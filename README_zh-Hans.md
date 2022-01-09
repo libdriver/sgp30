@@ -1,10 +1,12 @@
+[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md)
+
 <div align=center>
 <img src="/doc/image/logo.png"/>
 </div>
 
 ## LibDriver SGP30
 
-[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md)
+[![API](https://img.shields.io/badge/api-reference-blue)](https://www.libdriver.com/docs/sgp30/index.html) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE)
 
 SGP30是一个数字化多像素气体传感器平台，专为轻松集成到空气净化器、按需新风控制和物联网应用中而设计。SGP30 是一个数字化多像素气体传感器平台，专为轻松集成到空气净化器、按需新风控制和物联网应用中而设计。SGP30 设计用于智能家居、家电和物联网应用，它提供两个经过校准的空气质量信号和湿度补偿功能。Sensirion的CMOSens 技术在单个芯片上提供完整的传感器系统，该系统采用一个数字化 I2C 接口、一个温度控制的微加热器和两个经过预处理的室内空气质量信号。作为首款在单个芯片上采用多个传感元件的金属氧化物气体传感器，SGP30 可提供有关空气质量的更详尽指数。针对现实生活环境中的污染气体，该传感器具有无与伦比的可靠性，可以实现独一无二的长期稳定性和低漂移。 2.45 x 2.45 x 0.9 mm3 DFN 封装支持对空间有要求的应用，Sensirion 的先进生产工艺保证了高度的可再现性和可靠性，胶带和卷轴封装加上标准 SMD 装配工艺使得 SGP30 十分适合大规模生产的应用。
 
