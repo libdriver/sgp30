@@ -48,7 +48,7 @@ static sgp30_handle_t gs_handle;        /**< sgp30 handle */
  */
 uint8_t sgp30_advance_init(void)
 {
-    volatile uint8_t res;
+    uint8_t res;
     
     /* link functions */
     DRIVER_SGP30_LINK_INIT(&gs_handle, sgp30_handle_t);
@@ -61,7 +61,7 @@ uint8_t sgp30_advance_init(void)
     
     /* sgp30 init */
     res = sgp30_init(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: init failed.\n");
     
@@ -70,7 +70,7 @@ uint8_t sgp30_advance_init(void)
     
     /* soft reset */
     res = sgp30_soft_reset(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: soft reset failed.\n");
     
@@ -82,10 +82,10 @@ uint8_t sgp30_advance_init(void)
     
     /* iaq init */
     res = sgp30_iaq_init(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: iaq init failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
@@ -103,7 +103,7 @@ uint8_t sgp30_advance_init(void)
 uint8_t sgp30_advance_deinit(void)
 {
     /* close sgp30 */
-    if (sgp30_deinit(&gs_handle))
+    if (sgp30_deinit(&gs_handle) != 0)
     {
         return 1;
     }
@@ -125,7 +125,7 @@ uint8_t sgp30_advance_deinit(void)
 uint8_t sgp30_advance_read(uint16_t *co2_eq_ppm, uint16_t *tvoc_ppb)
 {
     /* read data */
-    if (sgp30_read(&gs_handle, co2_eq_ppm, tvoc_ppb))
+    if (sgp30_read(&gs_handle, co2_eq_ppm, tvoc_ppb) != 0)
     {
         return 1;
     }
@@ -146,7 +146,7 @@ uint8_t sgp30_advance_read(uint16_t *co2_eq_ppm, uint16_t *tvoc_ppb)
 uint8_t sgp30_advance_get_serial_id(uint16_t id[3])
 {
     /* get serial id */
-    if (sgp30_get_serial_id(&gs_handle, id))
+    if (sgp30_get_serial_id(&gs_handle, id) != 0)
     {
         return 1;
     }
@@ -168,7 +168,7 @@ uint8_t sgp30_advance_get_serial_id(uint16_t id[3])
 uint8_t sgp30_advance_get_feature(uint8_t *product_type, uint8_t *product_version)
 {
     /* get feature set */
-    if (sgp30_get_feature_set(&gs_handle, product_type, product_version))
+    if (sgp30_get_feature_set(&gs_handle, product_type, product_version) != 0)
     {
         return 1;
     }
@@ -190,7 +190,7 @@ uint8_t sgp30_advance_get_feature(uint8_t *product_type, uint8_t *product_versio
 uint8_t sgp30_advance_set_iaq_baseline(uint16_t tvoc, uint16_t co2_eq)
 {
     /* set iaq baseline */
-    if (sgp30_set_iaq_baseline(&gs_handle, tvoc, co2_eq))
+    if (sgp30_set_iaq_baseline(&gs_handle, tvoc, co2_eq) != 0)
     {
         return 1;
     }
@@ -212,7 +212,7 @@ uint8_t sgp30_advance_set_iaq_baseline(uint16_t tvoc, uint16_t co2_eq)
 uint8_t sgp30_advance_get_iaq_baseline(uint16_t *tvoc, uint16_t *co2_eq)
 {
     /* get iaq baseline */
-    if (sgp30_get_iaq_baseline(&gs_handle, tvoc, co2_eq))
+    if (sgp30_get_iaq_baseline(&gs_handle, tvoc, co2_eq) != 0)
     {
         return 1;
     }
@@ -233,12 +233,12 @@ uint8_t sgp30_advance_get_iaq_baseline(uint16_t *tvoc, uint16_t *co2_eq)
  */
 uint8_t sgp30_advance_set_absolute_humidity(float temp, float rh)
 {
-    volatile uint8_t res;
-    volatile uint16_t reg;
+    uint8_t res;
+    uint16_t reg;
     
     /* humidity convert to register */
     res = sgp30_absolute_humidity_convert_to_register(&gs_handle, temp, rh, (uint16_t *)&reg);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: humidity convert to register failed.\n");
         
@@ -247,7 +247,7 @@ uint8_t sgp30_advance_set_absolute_humidity(float temp, float rh)
     
     /* set absolute humidity */
     res = sgp30_set_absolute_humidity(&gs_handle, reg);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: set absolute humidity failed.\n");
         

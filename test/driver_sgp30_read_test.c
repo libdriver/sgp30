@@ -49,10 +49,10 @@ static sgp30_handle_t gs_handle;        /**< sgp30 handle */
  */
 uint8_t sgp30_read_test(uint32_t times)
 {
-    volatile uint8_t res;
-    volatile uint32_t i;
-    volatile uint16_t co2_eq_ppm;
-    volatile uint16_t tvoc_ppb;
+    uint8_t res;
+    uint32_t i;
+    uint16_t co2_eq_ppm;
+    uint16_t tvoc_ppb;
     sgp30_info_t info;
     
     /* link functions */
@@ -66,7 +66,7 @@ uint8_t sgp30_read_test(uint32_t times)
     
     /* sgp30 info */
     res = sgp30_info(&info);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: get info failed.\n");
        
@@ -91,7 +91,7 @@ uint8_t sgp30_read_test(uint32_t times)
     
     /* sgp30 init */
     res = sgp30_init(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: init failed.\n");
     
@@ -100,10 +100,10 @@ uint8_t sgp30_read_test(uint32_t times)
     
     /* soft reset */
     res = sgp30_soft_reset(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: soft failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
@@ -113,23 +113,23 @@ uint8_t sgp30_read_test(uint32_t times)
     
     /* iaq init */
     res = sgp30_iaq_init(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: iaq init failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
     sgp30_interface_debug_print("sgp30: raw read.\n");
-    for (i=0; i<times; i++)
+    for (i = 0; i < times; i++)
     {
         /* delay 1000 ms */
         sgp30_interface_delay_ms(1000);
         res = sgp30_get_measure_raw(&gs_handle, (uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
-        if (res)
+        if (res != 0)
         {
             sgp30_interface_debug_print("sgp30: read failed.\n");
-            sgp30_deinit(&gs_handle);
+            (void)sgp30_deinit(&gs_handle);
             
             return 1;
         }
@@ -137,15 +137,15 @@ uint8_t sgp30_read_test(uint32_t times)
         sgp30_interface_debug_print("sgp30: raw tvoc is %d.\n", tvoc_ppb);
     }
     sgp30_interface_debug_print("sgp30: normal read.\n");
-    for (i=0; i<times; i++)
+    for (i = 0; i < times; i++)
     {
         /* delay 1000 ms */
         sgp30_interface_delay_ms(1000);
         res = sgp30_read(&gs_handle, (uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
-        if (res)
+        if (res != 0)
         {
             sgp30_interface_debug_print("sgp30: read failed.\n");
-            sgp30_deinit(&gs_handle);
+            (void)sgp30_deinit(&gs_handle);
             
             return 1;
         }
@@ -155,7 +155,7 @@ uint8_t sgp30_read_test(uint32_t times)
     
     /* finish read test */
     sgp30_interface_debug_print("sgp30: finish read test.\n");
-    sgp30_deinit(&gs_handle);
+    (void)sgp30_deinit(&gs_handle);
     
     return 0;
 }

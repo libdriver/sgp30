@@ -120,7 +120,7 @@ uint8_t sgp30(uint8_t argc, char **argv)
             if (strcmp("reg", argv[2]) == 0)
             {
                 /* run reg test */
-                if (sgp30_register_test())
+                if (sgp30_register_test() != 0)
                 {
                     return 1;
                 }
@@ -150,7 +150,7 @@ uint8_t sgp30(uint8_t argc, char **argv)
             if (strcmp("read", argv[2]) == 0)
             {
                 /* run read test */
-                if (sgp30_read_test(atoi(argv[3])))
+                if (sgp30_read_test(atoi(argv[3])) != 0)
                 {
                     return 1;
                 }
@@ -171,25 +171,25 @@ uint8_t sgp30(uint8_t argc, char **argv)
             /* read function */
             if (strcmp("read", argv[2]) == 0)
             {
-                volatile uint8_t res;
-                volatile uint32_t times;
-                volatile uint32_t i;
-                volatile uint16_t co2_eq_ppm;
-                volatile uint16_t tvoc_ppb;
+                uint8_t res;
+                uint32_t times;
+                uint32_t i;
+                uint16_t co2_eq_ppm;
+                uint16_t tvoc_ppb;
                 
                 res = sgp30_basic_init();
-                if (res)
+                if (res != 0)
                 {
                     return 1;
                 }
                 times = atoi(argv[3]);
-                for (i=0; i<times; i++)
+                for (i = 0; i < times; i++)
                 {
                     sgp30_interface_delay_ms(1000);
                     res = sgp30_basic_read((uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
-                    if (res)
+                    if (res != 0)
                     {
-                        sgp30_basic_deinit();
+                        (void)sgp30_basic_deinit();
                         
                         return 1;
                     }
@@ -197,7 +197,7 @@ uint8_t sgp30(uint8_t argc, char **argv)
                     sgp30_interface_debug_print("sgp30: co2 eq is %d ppm.\n", co2_eq_ppm);
                     sgp30_interface_debug_print("sgp30: tvoc is %d ppb.\n", tvoc_ppb);
                 }
-                sgp30_basic_deinit();
+                (void)sgp30_basic_deinit();
                 
                 return 0;
             }
@@ -223,25 +223,25 @@ uint8_t sgp30(uint8_t argc, char **argv)
             {
                 if (strcmp("-read", argv[3]) == 0)
                 {
-                    volatile uint8_t res;
-                    volatile uint32_t times;
-                    volatile uint32_t i;
-                    volatile uint16_t co2_eq_ppm;
-                    volatile uint16_t tvoc_ppb;
+                    uint8_t res;
+                    uint32_t times;
+                    uint32_t i;
+                    uint16_t co2_eq_ppm;
+                    uint16_t tvoc_ppb;
                     
                     res = sgp30_advance_init();
-                    if (res)
+                    if (res != 0)
                     {
                         return 1;
                     }
                     times = atoi(argv[4]);
-                    for (i=0; i<times; i++)
+                    for (i = 0; i < times; i++)
                     {
                         sgp30_interface_delay_ms(1000);
                         res = sgp30_advance_read((uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
-                        if (res)
+                        if (res != 0)
                         {
-                            sgp30_advance_deinit();
+                            (void)sgp30_advance_deinit();
                             
                             return 1;
                         }
@@ -249,16 +249,16 @@ uint8_t sgp30(uint8_t argc, char **argv)
                         sgp30_interface_debug_print("sgp30: co2 eq is %d ppm.\n", co2_eq_ppm);
                         sgp30_interface_debug_print("sgp30: tvoc is %d ppb.\n", tvoc_ppb);
                     }
-                    sgp30_advance_deinit();
+                    (void)sgp30_advance_deinit();
                     
                     return 0;
                 }
                 else if (strcmp("-info", argv[3]) == 0)
                 {
-                    volatile uint8_t res;
+                    uint8_t res;
                      
                     res = sgp30_advance_init();
-                    if (res)
+                    if (res != 0)
                     {
                         return 1;
                     }
@@ -267,39 +267,39 @@ uint8_t sgp30(uint8_t argc, char **argv)
                         uint16_t id[3];
                         
                         res = sgp30_advance_get_serial_id((uint16_t *)id);
-                        if (res)
+                        if (res != 0)
                         {
-                            sgp30_advance_deinit();
+                            (void)sgp30_advance_deinit();
                             
                             return 1;
                         }
                         sgp30_interface_debug_print("sgp30: serial id 0x%04X 0x%04X 0x%04X.\n", (uint16_t)(id[0]), (uint16_t)(id[1]), (uint16_t)(id[2]));
-                        sgp30_advance_deinit();
+                        (void)sgp30_advance_deinit();
                         
                         return 0;
                     }
                     else if (strcmp("product", argv[4]) == 0)
                     {
-                        volatile uint8_t product_type;
-                        volatile uint8_t product_version;
+                        uint8_t product_type;
+                        uint8_t product_version;
                         
                         res = sgp30_advance_get_feature((uint8_t *)&product_type, (uint8_t *)&product_version);
-                        if (res)
+                        if (res != 0)
                         {
-                            sgp30_advance_deinit();
+                            (void)sgp30_advance_deinit();
                             
                             return 1;
                         }
                         sgp30_interface_debug_print("sgp30: product type is 0x%02X.\n", product_type);
                         sgp30_interface_debug_print("sgp30: product version is 0x%02X.\n", product_version);
-                        sgp30_advance_deinit();
+                        (void)sgp30_advance_deinit();
                         
                         return 0;
                     }
                     else
                     {
                         sgp30_interface_debug_print("sgp30: info is invalid.\n");
-                        sgp30_advance_deinit();
+                        (void)sgp30_advance_deinit();
                         
                         return 5;
                     }
@@ -332,13 +332,13 @@ uint8_t sgp30(uint8_t argc, char **argv)
             {
                 if (strcmp("-read", argv[3]) == 0)
                 {
-                    volatile uint8_t res;
-                    volatile uint32_t i, times;
-                    volatile uint16_t co2_eq_ppm;
-                    volatile uint16_t tvoc_ppb;
+                    uint8_t res;
+                    uint32_t i, times;
+                    uint16_t co2_eq_ppm;
+                    uint16_t tvoc_ppb;
                     
                     res = sgp30_advance_init();
-                    if (res)
+                    if (res != 0)
                     {
                         return 1;
                     }
@@ -347,20 +347,20 @@ uint8_t sgp30(uint8_t argc, char **argv)
                     {
                         sgp30_interface_debug_print("sgp30: tvoc is 0x%04X.\n", atoi(argv[6]));
                         sgp30_interface_debug_print("sgp30: co2 eq is 0x%04X.\n", atoi(argv[7]));
-                        res = sgp30_advance_set_iaq_baseline(atoi(argv[6]), atoi(argv[7]));
-                        if (res)
+                        res = sgp30_advance_set_iaq_baseline((uint16_t)atoi(argv[6]), (uint16_t)atoi(argv[7]));
+                        if (res != 0)
                         {
-                            sgp30_advance_deinit();
+                            (void)sgp30_advance_deinit();
                             
                             return 1;
                         }
-                        for (i=0; i<times; i++)
+                        for (i = 0; i < times; i++)
                         {
                             sgp30_interface_delay_ms(1000);
                             res = sgp30_advance_read((uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
-                            if (res)
+                            if (res != 0)
                             {
-                                sgp30_advance_deinit();
+                                (void)sgp30_advance_deinit();
                                 
                                 return 1;
                             }
@@ -368,7 +368,7 @@ uint8_t sgp30(uint8_t argc, char **argv)
                             sgp30_interface_debug_print("sgp30: co2 eq is %d ppm.\n", co2_eq_ppm);
                             sgp30_interface_debug_print("sgp30: tvoc is %d ppb.\n", tvoc_ppb);
                         }
-                        sgp30_advance_deinit();
+                        (void)sgp30_advance_deinit();
                         
                         return 0;
                     }
@@ -376,20 +376,20 @@ uint8_t sgp30(uint8_t argc, char **argv)
                     {
                         sgp30_interface_debug_print("sgp30: temp is %0.2fC.\n", atof(argv[6]));
                         sgp30_interface_debug_print("sgp30: rh is %0.2f%%.\n", atof(argv[7]));
-                        res = sgp30_advance_set_absolute_humidity(atof(argv[6]), atof(argv[7]));
-                        if (res)
+                        res = sgp30_advance_set_absolute_humidity((float)atof(argv[6]), (float)atof(argv[7]));
+                        if (res != 0)
                         {
-                            sgp30_advance_deinit();
+                            (void)sgp30_advance_deinit();
                             
                             return 1;
                         }
-                        for (i=0; i<times; i++)
+                        for (i = 0; i < times; i++)
                         {
                             sgp30_interface_delay_ms(1000);
                             res = sgp30_advance_read((uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
-                            if (res)
+                            if (res != 0)
                             {
-                                sgp30_advance_deinit();
+                                (void)sgp30_advance_deinit();
                                 
                                 return 1;
                             }
@@ -397,14 +397,14 @@ uint8_t sgp30(uint8_t argc, char **argv)
                             sgp30_interface_debug_print("sgp30: co2 eq is %d ppm.\n", co2_eq_ppm);
                             sgp30_interface_debug_print("sgp30: tvoc is %d ppb.\n", tvoc_ppb);
                         }
-                        sgp30_advance_deinit();
+                        (void)sgp30_advance_deinit();
                         
                         return 0;
                     }
                     /* param is invalid */
                     else
                     {
-                        sgp30_advance_deinit();
+                        (void)sgp30_advance_deinit();
                         
                         return 5;
                     }

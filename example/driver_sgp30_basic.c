@@ -48,7 +48,7 @@ static sgp30_handle_t gs_handle;        /**< sgp30 handle */
  */
 uint8_t sgp30_basic_init(void)
 {
-    volatile uint8_t res;
+    uint8_t res;
     
     /* link functions */
     DRIVER_SGP30_LINK_INIT(&gs_handle, sgp30_handle_t);
@@ -61,7 +61,7 @@ uint8_t sgp30_basic_init(void)
     
     /* sgp30 init */
     res = sgp30_init(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: init failed.\n");
     
@@ -70,7 +70,7 @@ uint8_t sgp30_basic_init(void)
     
     /* soft reset */
     res = sgp30_soft_reset(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: soft reset failed.\n");
     
@@ -82,10 +82,10 @@ uint8_t sgp30_basic_init(void)
     
     /* iaq init */
     res = sgp30_iaq_init(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: iaq init failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
@@ -103,7 +103,7 @@ uint8_t sgp30_basic_init(void)
 uint8_t sgp30_basic_deinit(void)
 {
     /* close sgp30 */
-    if (sgp30_deinit(&gs_handle))
+    if (sgp30_deinit(&gs_handle) != 0)
     {
         return 1;
     }
@@ -125,7 +125,7 @@ uint8_t sgp30_basic_deinit(void)
 uint8_t sgp30_basic_read(uint16_t *co2_eq_ppm, uint16_t *tvoc_ppb)
 {
     /* read data */
-    if (sgp30_read(&gs_handle, co2_eq_ppm, tvoc_ppb))
+    if (sgp30_read(&gs_handle, co2_eq_ppm, tvoc_ppb) != 0)
     {
         return 1;
     }

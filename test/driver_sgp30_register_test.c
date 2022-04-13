@@ -49,15 +49,15 @@ static sgp30_handle_t gs_handle;        /**< sgp30 handle */
  */
 uint8_t sgp30_register_test(void)
 {
-    volatile uint8_t res;
-    volatile uint16_t id[3];
-    volatile uint8_t product_type;
-    volatile uint8_t product_version;
-    volatile uint16_t tvoc, tvoc_check;
-    volatile uint16_t co2_eq, co2_eq_check;
-    volatile uint16_t humidity;
-    volatile float temp;
-    volatile float rh;
+    uint8_t res;
+    uint16_t id[3];
+    uint8_t product_type;
+    uint8_t product_version;
+    uint16_t tvoc, tvoc_check;
+    uint16_t co2_eq, co2_eq_check;
+    uint16_t humidity;
+    float temp;
+    float rh;
     sgp30_info_t info;
     
     /* link functions */
@@ -71,7 +71,7 @@ uint8_t sgp30_register_test(void)
     
     /* sgp30 info */
     res = sgp30_info(&info);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: get info failed.\n");
        
@@ -96,7 +96,7 @@ uint8_t sgp30_register_test(void)
     
     /* sgp30 init */
     res = sgp30_init(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: init failed.\n");
     
@@ -108,10 +108,10 @@ uint8_t sgp30_register_test(void)
     
     /* soft reset */
     res = sgp30_soft_reset(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: soft failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
@@ -122,10 +122,10 @@ uint8_t sgp30_register_test(void)
     
     /* iaq init */
     res = sgp30_iaq_init(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: iaq init failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
@@ -135,10 +135,10 @@ uint8_t sgp30_register_test(void)
     
     /* sgp30 get serial id */
     res = sgp30_get_serial_id(&gs_handle, (uint16_t *)id);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: get serial id failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
@@ -148,10 +148,10 @@ uint8_t sgp30_register_test(void)
     /* sgp30_get_feature_set test */
     sgp30_interface_debug_print("sgp30: sgp30_get_feature_set test.\n");
     res = sgp30_get_feature_set(&gs_handle, (uint8_t *)&product_type, (uint8_t *)&product_version);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: get feature set failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
@@ -161,21 +161,21 @@ uint8_t sgp30_register_test(void)
     
     /* sgp30_set_tvoc_baseline/sgp30_get_tvoc_inceptive_baseline test */
     sgp30_interface_debug_print("sgp30: sgp30_set_tvoc_baseline/sgp30_get_tvoc_inceptive_baseline test.\n");
-    tvoc = rand()%65535;
+    tvoc = (uint16_t)(rand() % 65535);
     res = sgp30_set_tvoc_baseline(&gs_handle, tvoc);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: set tvoc baseline failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
     sgp30_interface_debug_print("sgp30: set tvoc baseline 0x%04X.\n", (uint16_t)(tvoc));
     res = sgp30_get_tvoc_inceptive_baseline(&gs_handle, (uint16_t *)&tvoc_check);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: get tvoc inceptive baseline failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
@@ -183,23 +183,23 @@ uint8_t sgp30_register_test(void)
     
     /* sgp30_set_iaq_baseline/sgp30_get_iaq_baseline test */
     sgp30_interface_debug_print("sgp30: sgp30_set_iaq_baseline/sgp30_get_iaq_baseline test.\n");
-    tvoc = rand()%65535;
-    co2_eq = rand()%65535;
+    tvoc = (uint16_t)(rand() % 65535);
+    co2_eq = (uint16_t)(rand() % 65535);
     res = sgp30_set_iaq_baseline(&gs_handle, tvoc, co2_eq);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: set iaq baseline failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
     sgp30_interface_debug_print("sgp30: set tvoc baseline 0x%04X.\n", (uint16_t)(tvoc));
     sgp30_interface_debug_print("sgp30: set co2 eq baseline 0x%04X.\n", (uint16_t)(co2_eq));
     res = sgp30_get_iaq_baseline(&gs_handle, (uint16_t *)&tvoc_check, (uint16_t *)&co2_eq_check);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: get iaq baseline failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
@@ -207,13 +207,13 @@ uint8_t sgp30_register_test(void)
     
     /* sgp30_set_absolute_humidity test */
     sgp30_interface_debug_print("sgp30: sgp30_set_absolute_humidity test.\n");
-    temp = (float)(rand()%3000) / 100.0f;
-    rh = (float)(rand()%10000) / 100.0f;
+    temp = (float)(rand() % 3000) / 100.0f;
+    rh = (float)(rand() % 10000) / 100.0f;
     res = sgp30_absolute_humidity_convert_to_register(&gs_handle, temp, rh, (uint16_t *)&humidity);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: absolute humidity convert to register failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
@@ -221,10 +221,10 @@ uint8_t sgp30_register_test(void)
     sgp30_interface_debug_print("sgp30: set rh %0.2f%%.\n", rh);
     sgp30_interface_debug_print("sgp30: set register value 0x%04X.\n", (uint16_t)humidity);
     res = sgp30_set_absolute_humidity(&gs_handle, humidity);
-    if (res)
+    if (res != 0)
     {
         sgp30_interface_debug_print("sgp30: set absolute humidity failed.\n");
-        sgp30_deinit(&gs_handle);
+        (void)sgp30_deinit(&gs_handle);
         
         return 1;
     }
@@ -232,7 +232,7 @@ uint8_t sgp30_register_test(void)
     
     /* finish register test */
     sgp30_interface_debug_print("sgp30: finish register test.\n");
-    sgp30_deinit(&gs_handle);
+    (void)sgp30_deinit(&gs_handle);
     
     return 0;
 }

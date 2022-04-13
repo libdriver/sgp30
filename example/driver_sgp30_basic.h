@@ -35,8 +35,8 @@
  * </table>
  */
 
-#ifndef _DRIVER_SGP30_BASIC_H_
-#define _DRIVER_SGP30_BASIC_H_
+#ifndef DRIVER_SGP30_BASIC_H
+#define DRIVER_SGP30_BASIC_H
 
 #include "driver_sgp30_interface.h"
 
