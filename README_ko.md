@@ -57,7 +57,7 @@ uint16_t co2_eq_ppm;
 uint16_t tvoc_ppb;
 
 res = sgp30_basic_init();
-if (res)
+if (res != 0)
 {
     return 1;
 }
@@ -68,9 +68,9 @@ for (i = 0; i < 3; i++)
 {
     sgp30_interface_delay_ms(1000);
     res = sgp30_basic_read((uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
-    if (res)
+    if (res != 0)
     {
-        sgp30_basic_deinit();
+        (void)sgp30_basic_deinit();
 
         return 1;
     }
@@ -83,7 +83,7 @@ for (i = 0; i < 3; i++)
 
 ...
 
-sgp30_basic_deinit();
+(void)sgp30_basic_deinit();
 
 return 0;
 ```
@@ -100,7 +100,7 @@ uint8_t product_type;
 uint8_t product_version;
 
 res = sgp30_advance_init();
-if (res)
+if (res != 0)
 {
     return 1;
 }
@@ -108,9 +108,9 @@ if (res)
 ...
 
 res = sgp30_advance_get_serial_id((uint16_t *)id);
-if (res)
+if (res != 0)
 {
-    sgp30_advance_deinit();
+    (void)sgp30_advance_deinit();
 
     return 1;
 }
@@ -119,9 +119,9 @@ sgp30_interface_debug_print("sgp30: serial id 0x%04X 0x%04X 0x%04X.\n", (uint16_
 ...
 
 res = sgp30_advance_get_feature((uint8_t *)&product_type, (uint8_t *)&product_version);
-if (res)
+if (res != 0)
 {
-    sgp30_advance_deinit();
+    (void)sgp30_advance_deinit();
 
     return 1;
 }
@@ -131,9 +131,9 @@ sgp30_interface_debug_print("sgp30: product version is 0x%02X.\n", product_versi
 ...
 
 res = sgp30_advance_set_iaq_baseline(0x01, 0x02);
-if (res)
+if (res != 0)
 {
-    sgp30_advance_deinit();
+    (void)sgp30_advance_deinit();
 
     return 1;
 }
@@ -141,9 +141,9 @@ if (res)
 ...
 
 res = sgp30_advance_set_absolute_humidity(25.6, 30.2f);
-if (res)
+if (res != 0)
 {
-    sgp30_advance_deinit();
+    (void)sgp30_advance_deinit();
 
     return 1;
 }
@@ -154,9 +154,9 @@ for (i = 0; i < 3; i++)
 {
     sgp30_interface_delay_ms(1000);
     res = sgp30_advance_read((uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
-    if (res)
+    if (res != 0)
     {
-        sgp30_advance_deinit();
+        (void)sgp30_advance_deinit();
 
         return 1;
     }
@@ -169,7 +169,7 @@ for (i = 0; i < 3; i++)
 
 ...
 
-sgp30_advance_deinit();
+(void)sgp30_advance_deinit();
 
 return 0;
 ```
