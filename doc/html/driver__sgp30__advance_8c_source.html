@@ -226,22 +226,18 @@ $(document).ready(function(){initNavTree('driver__sgp30__advance_8c_source.html'
 <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    res = <a class="code" href="group__sgp30__base__driver.html#ga2343ff48958762bfb8dcf2f1b48eebed">sgp30_absolute_humidity_convert_to_register</a>(&amp;gs_handle, temp, rh, (uint16_t *)&amp;reg);</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">if</span> (res != 0)</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    {</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <a class="code" href="group__sgp30__interface__driver.html#ga58ed9f4096033cf156dd38105eb19229">sgp30_interface_debug_print</a>(<span class="stringliteral">&quot;sgp30: humidity convert to register failed.\n&quot;</span>);</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        </div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    }</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    </div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="comment">/* set absolute humidity */</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    res = <a class="code" href="group__sgp30__base__driver.html#gaa2bad69ff22a7cd798a97546146676fd">sgp30_set_absolute_humidity</a>(&amp;gs_handle, reg);</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="keywordflow">if</span> (res != 0)</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    {</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <a class="code" href="group__sgp30__interface__driver.html#ga58ed9f4096033cf156dd38105eb19229">sgp30_interface_debug_print</a>(<span class="stringliteral">&quot;sgp30: set absolute humidity failed.\n&quot;</span>);</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        </div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    }</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    </div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;}</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="comment">/* set absolute humidity */</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    res = <a class="code" href="group__sgp30__base__driver.html#gaa2bad69ff22a7cd798a97546146676fd">sgp30_set_absolute_humidity</a>(&amp;gs_handle, reg);</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordflow">if</span> (res != 0)</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    {</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;}</div>
 <div class="ttc" id="adriver__sgp30__advance_8h_html"><div class="ttname"><a href="driver__sgp30__advance_8h.html">driver_sgp30_advance.h</a></div><div class="ttdoc">driver sgp30 advance header file</div></div>
 <div class="ttc" id="agroup__sgp30__base__driver_html_ga079d97b8707edf3a41b2fdb80f7994fe"><div class="ttname"><a href="group__sgp30__base__driver.html#ga079d97b8707edf3a41b2fdb80f7994fe">sgp30_get_iaq_baseline</a></div><div class="ttdeci">uint8_t sgp30_get_iaq_baseline(sgp30_handle_t *handle, uint16_t *tvoc, uint16_t *co2_eq)</div><div class="ttdoc">get the chip iaq baseline</div><div class="ttdef"><b>Definition:</b> <a href="driver__sgp30_8c_source.html#l00463">driver_sgp30.c:463</a></div></div>
 <div class="ttc" id="agroup__sgp30__base__driver_html_ga1fe1b66ea42eb2ebd65037f4b6dc754e"><div class="ttname"><a href="group__sgp30__base__driver.html#ga1fe1b66ea42eb2ebd65037f4b6dc754e">sgp30_init</a></div><div class="ttdeci">uint8_t sgp30_init(sgp30_handle_t *handle)</div><div class="ttdoc">initialize the chip</div><div class="ttdef"><b>Definition:</b> <a href="driver__sgp30_8c_source.html#l00775">driver_sgp30.c:775</a></div></div>
