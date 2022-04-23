@@ -240,8 +240,6 @@ uint8_t sgp30_advance_set_absolute_humidity(float temp, float rh)
     res = sgp30_absolute_humidity_convert_to_register(&gs_handle, temp, rh, (uint16_t *)&reg);
     if (res != 0)
     {
-        sgp30_interface_debug_print("sgp30: humidity convert to register failed.\n");
-        
         return 1;
     }
     
@@ -249,8 +247,6 @@ uint8_t sgp30_advance_set_absolute_humidity(float temp, float rh)
     res = sgp30_set_absolute_humidity(&gs_handle, reg);
     if (res != 0)
     {
-        sgp30_interface_debug_print("sgp30: set absolute humidity failed.\n");
-        
         return 1;
     }
     
