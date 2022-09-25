@@ -1,6 +1,6 @@
-### 1. chip
+### 1. Chip
 
-#### 1.1 chip info
+#### 1.1 Chip Info
 
 chip name : STM32F407ZGT6.
 
@@ -10,23 +10,23 @@ uart pin: TX/RX PA9/PA10.
 
 iic pin: SCL/SDA PB8/PB9.
 
-### 2. shell
+### 2. Shell
 
-#### 2.1 shell parameter
+#### 2.1 Shell Parameter
 
-baud rate: 115200
+baud rate: 115200.
 
-data bits : 8
+data bits : 8.
 
-stop bits: 1
+stop bits: 1.
 
-parity: none
+parity: none.
 
-flow control: none
+flow control: none.
 
-### 3. sgp30
+### 3. SGP30
 
-#### 3.1 command Instruction
+#### 3.1 Command Instruction
 
 ​          sgp30 is a basic command which can test all sgp30 driver function:
 
@@ -56,7 +56,7 @@ flow control: none
 
 ​           -c -info product        get spg30 product information.
 
-#### 3.2 command example
+#### 3.2 Command Example
 
 ```shell
 sgp30 -i

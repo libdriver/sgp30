@@ -1,32 +1,90 @@
-### 1. chip
+### 1. Chip
 
-#### 1.1 chip info
+#### 1.1 Chip Info
 
-chip name : Raspberry Pi 4B
+chip name : Raspberry Pi 4B.
 
-iic pin: SCL/SDA GPIO3/GPIO2
+iic pin: SCL/SDA GPIO3/GPIO2.
 
-### 2. install
+### 2. Install
 
-#### 2.1 install info
+#### 2.1 Dependencies
+
+Install the necessary dependencies.
 
 ```shell
-make
+sudo apt-get install libgpiod-dev pkg-config cmake -y
 ```
 
-#### 2.2 configuration
+#### 2.2 Configuration
 
 ```shell
 sudo vim /boot/config.txt
 
 # add or change
-
 dtparam=i2c_arm=on,i2c_arm_baudrate=80000
+
+# reboot the device
+reboot
 ```
 
-### 3. sgp30
+#### 2.3 Makefile
 
-#### 3.1 command Instruction
+Build the project.
+
+```shell
+make
+```
+
+Install the project and this is optional.
+
+```shell
+sudo make install
+```
+
+Uninstall the project and this is optional.
+
+```shell
+sudo make uninstall
+```
+
+#### 2.4 CMake
+
+Build the project.
+
+```shell
+mkdir build && cd build 
+cmake .. 
+make
+```
+
+Install the project and this is optional.
+
+```shell
+sudo make install
+```
+
+Uninstall the project and this is optional.
+
+```shell
+sudo make uninstall
+```
+
+Test the project and this is optional.
+
+```shell
+make test
+```
+
+Find the compiled library in CMake. 
+
+```cmake
+find_package(sgp30 REQUIRED)
+```
+
+### 3. SGP30
+
+#### 3.1 Command Instruction
 
 ​          sgp30 is a basic command which can test all sgp30 driver function:
 
@@ -56,7 +114,7 @@ dtparam=i2c_arm=on,i2c_arm_baudrate=80000
 
 ​           -c -info product        get spg30 product information.
 
-#### 3.2 command example
+#### 3.2 Command Example
 
 ```shell
 ./sgp30 -i
