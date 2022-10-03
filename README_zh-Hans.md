@@ -51,6 +51,8 @@ LibDriver SGP30是LibDriver推出的SGP30的全功能驱动，该驱动提供TVO
 #### example basic
 
 ```C
+#include "driver_sgp30_basic.h"
+
 uint8_t res;
 uint8_t i;
 uint16_t co2_eq_ppm;
@@ -91,6 +93,8 @@ return 0;
 #### example advance
 
 ```C
+#include "driver_sgp30_advance.h"
+
 uint8_t res;
 uint8_t i;
 uint16_t co2_eq_ppm;

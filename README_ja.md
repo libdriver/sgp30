@@ -51,6 +51,8 @@ LibDriver SGP30は、LibDriverによって起動されたSGP30の全機能ドラ
 #### example basic
 
 ```C
+#include "driver_sgp30_basic.h"
+
 uint8_t res;
 uint8_t i;
 uint16_t co2_eq_ppm;
@@ -91,6 +93,8 @@ return 0
 #### example advance
 
 ```c
+#include "driver_sgp30_advance.h"
+
 uint8_t res;
 uint8_t i;
 uint16_t co2_eq_ppm;
