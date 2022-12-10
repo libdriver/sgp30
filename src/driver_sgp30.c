@@ -341,7 +341,7 @@ uint8_t sgp30_soft_reset(sgp30_handle_t *handle)
 /**
  * @brief      get the chip serial id
  * @param[in]  *handle points to a sgp30 handle structure
- * @param[out] *id points to a id buffer
+ * @param[out] *id points to an id buffer
  * @return     status code
  *             - 0 success
  *             - 1 get serial id failed

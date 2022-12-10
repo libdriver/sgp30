@@ -83,7 +83,7 @@ uint8_t sgp30_register_test(void)
         sgp30_interface_debug_print("sgp30: chip is %s.\n", info.chip_name);
         sgp30_interface_debug_print("sgp30: manufacturer is %s.\n", info.manufacturer_name);
         sgp30_interface_debug_print("sgp30: interface is %s.\n", info.interface);
-        sgp30_interface_debug_print("sgp30: driver version is %d.%d.\n", info.driver_version/1000, (info.driver_version%1000)/100);
+        sgp30_interface_debug_print("sgp30: driver version is %d.%d.\n", info.driver_version / 1000, (info.driver_version % 1000) / 100);
         sgp30_interface_debug_print("sgp30: min supply voltage is %0.1fV.\n", info.supply_voltage_min_v);
         sgp30_interface_debug_print("sgp30: max supply voltage is %0.1fV.\n", info.supply_voltage_max_v);
         sgp30_interface_debug_print("sgp30: max current is %0.2fmA.\n", info.max_current_ma);

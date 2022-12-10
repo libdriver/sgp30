@@ -38,6 +38,7 @@
 #include "driver_sgp30_advance.h"
 #include "driver_sgp30_register_test.h"
 #include "driver_sgp30_read_test.h"
+#include <getopt.h>
 #include <stdlib.h>
 
 /**
@@ -52,382 +53,372 @@
  */
 uint8_t sgp30(uint8_t argc, char **argv)
 {
+    int c;
+    int longindex = 0;
+    const char short_options[] = "hipe:t:";
+    const struct option long_options[] =
+    {
+        {"help", no_argument, NULL, 'h'},
+        {"information", no_argument, NULL, 'i'},
+        {"port", no_argument, NULL, 'p'},
+        {"example", required_argument, NULL, 'e'},
+        {"test", required_argument, NULL, 't'},
+        {"baseline-co2eq", required_argument, NULL, 1},
+        {"baseline-tvoc", required_argument, NULL, 2},
+        {"humidity-rh", required_argument, NULL, 3},
+        {"humidity-temperature", required_argument, NULL, 4},
+        {"times", required_argument, NULL, 5},
+        {NULL, 0, NULL, 0},
+    };
+    char type[32] = "unknow";
+    uint32_t times = 3;
+    uint16_t co2_eq_ppm = 0;
+    uint16_t tvoc_ppb = 0;
+    float rh = 50.0f;
+    float temp = 25.0f;
+
+    /* if no params */
     if (argc == 1)
     {
+        /* goto the help */
         goto help;
     }
-    else if (argc == 2)
+    
+    /* init 0 */
+    optind = 0;
+    
+    /* parse */
+    do
     {
-        if (strcmp("-i", argv[1]) == 0)
+        /* parse the args*/
+        c = getopt_long(argc, argv, short_options, long_options, &longindex);
+        
+        /* judge the result */
+        switch (c)
         {
-            sgp30_info_t info;
-            
-            /* print sgp30 info */
-            sgp30_info(&info);
-            sgp30_interface_debug_print("sgp30: chip is %s.\n", info.chip_name);
-            sgp30_interface_debug_print("sgp30: manufacturer is %s.\n", info.manufacturer_name);
-            sgp30_interface_debug_print("sgp30: interface is %s.\n", info.interface);
-            sgp30_interface_debug_print("sgp30: driver version is %d.%d.\n", info.driver_version/1000, (info.driver_version%1000)/100);
-            sgp30_interface_debug_print("sgp30: min supply voltage is %0.1fV.\n", info.supply_voltage_min_v);
-            sgp30_interface_debug_print("sgp30: max supply voltage is %0.1fV.\n", info.supply_voltage_max_v);
-            sgp30_interface_debug_print("sgp30: max current is %0.2fmA.\n", info.max_current_ma);
-            sgp30_interface_debug_print("sgp30: max temperature is %0.1fC.\n", info.temperature_max);
-            sgp30_interface_debug_print("sgp30: min temperature is %0.1fC.\n", info.temperature_min);
-            
-            return 0;
-        }
-        else if (strcmp("-p", argv[1]) == 0)
-        {
-            /* print pin connection */
-            sgp30_interface_debug_print("sgp30: SCL connected to GPIO3(BCM).\n");
-            sgp30_interface_debug_print("sgp30: SDA connected to GPIO2(BCM).\n");
-            
-            return 0;
-        }
-        else if (strcmp("-h", argv[1]) == 0)
-        {
-            /* show sgp30 help */
-            
-            help:
-            
-            sgp30_interface_debug_print("sgp30 -i\n\tshow sgp30 chip and driver information.\n");
-            sgp30_interface_debug_print("sgp30 -h\n\tshow sgp30 help.\n");
-            sgp30_interface_debug_print("sgp30 -p\n\tshow sgp30 pin connections of the current board.\n");
-            sgp30_interface_debug_print("sgp30 -t reg\n\trun sgp30 register test.\n");
-            sgp30_interface_debug_print("sgp30 -t read <times>\n\trun sgp30 read test.times means test times.\n");
-            sgp30_interface_debug_print("sgp30 -c read <times>\n\trun spg30 read function.times means read times.\n");
-            sgp30_interface_debug_print("sgp30 -c advance -read <times>\n\trun spg30 advance read function.times means read times.\n");
-            sgp30_interface_debug_print("sgp30 -c advance -read <times> -baseline <tvoc> <co2eq>\n\trun spg30 advance read function with baseline.times means read times.");
-            sgp30_interface_debug_print("tvoc means current tvoc.co2eq means current co2eq.\n");
-            sgp30_interface_debug_print("sgp30 -c advance -read <times> -humidity <temperature> <rh>\n\trun spg30 advance read function with humidity.times means read times.");
-            sgp30_interface_debug_print("temperature means current temperature.rh means current relative humidity.\n");
-            sgp30_interface_debug_print("sgp30 -c -info id\n\tget spg30 id information.\n");
-            sgp30_interface_debug_print("sgp30 -c -info product\n\tget spg30 product information.\n");
-            
-            return 0;
-        }
-        else
-        {
-            return 5;
-        }
-    }
-    else if (argc == 3)
-    {
-        /* run test */
-        if (strcmp("-t", argv[1]) == 0)
-        {
-             /* reg test */
-            if (strcmp("reg", argv[2]) == 0)
+            /* help */
+            case 'h' :
             {
-                /* run reg test */
-                if (sgp30_register_test() != 0)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            /* param is invalid */
-            else
-            {
-                return 5;
-            }
-        }
-        /* param is invalid */
-        else
-        {
-            return 5;
-        }
-    }
-    else if (argc == 4)
-    {
-        /* run test */
-        if (strcmp("-t", argv[1]) == 0)
-        {
-             /* read test */
-            if (strcmp("read", argv[2]) == 0)
-            {
-                /* run read test */
-                if (sgp30_read_test(atoi(argv[3])) != 0)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            /* param is invalid */
-            else
-            {
-                return 5;
-            }
-        }
-        /* run function */
-        else if (strcmp("-c", argv[1]) == 0)
-        {
-            /* read function */
-            if (strcmp("read", argv[2]) == 0)
-            {
-                uint8_t res;
-                uint32_t times;
-                uint32_t i;
-                uint16_t co2_eq_ppm;
-                uint16_t tvoc_ppb;
+                /* set the type */
+                memset(type, 0, sizeof(char) * 32);
+                snprintf(type, 32, "h");
                 
-                res = sgp30_basic_init();
-                if (res != 0)
-                {
-                    return 1;
-                }
-                times = atoi(argv[3]);
-                for (i = 0; i < times; i++)
-                {
-                    sgp30_interface_delay_ms(1000);
-                    res = sgp30_basic_read((uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
-                    if (res != 0)
-                    {
-                        (void)sgp30_basic_deinit();
-                        
-                        return 1;
-                    }
-                    sgp30_interface_debug_print("sgp30: %d/%d.\n", (uint32_t)(i+1), (uint32_t)times);
-                    sgp30_interface_debug_print("sgp30: co2 eq is %d ppm.\n", co2_eq_ppm);
-                    sgp30_interface_debug_print("sgp30: tvoc is %d ppb.\n", tvoc_ppb);
-                }
+                break;
+            }
+            
+            /* information */
+            case 'i' :
+            {
+                /* set the type */
+                memset(type, 0, sizeof(char) * 32);
+                snprintf(type, 32, "i");
+                
+                break;
+            }
+            
+            /* port */
+            case 'p' :
+            {
+                /* set the type */
+                memset(type, 0, sizeof(char) * 32);
+                snprintf(type, 32, "p");
+                
+                break;
+            }
+            
+            /* example */
+            case 'e' :
+            {
+                /* set the type */
+                memset(type, 0, sizeof(char) * 32);
+                snprintf(type, 32, "e_%s", optarg);
+                
+                break;
+            }
+            
+            /* test */
+            case 't' :
+            {
+                /* set the type */
+                memset(type, 0, sizeof(char) * 32);
+                snprintf(type, 32, "t_%s", optarg);
+                
+                break;
+            }
+            
+            /* baseline co2eq */
+            case 1 :
+            {
+                /* set the baseline co2eq */
+                co2_eq_ppm = atoi(optarg);
+                
+                break;
+            }
+            
+            /* baseline tvoc */
+            case 2 :
+            {
+                /* set the baseline tvoc  */
+                tvoc_ppb = atoi(optarg);
+                
+                break;
+            }
+            
+            /* rh */
+            case 3 :
+            {
+                rh = atof(optarg);
+                
+                break;
+            }
+             
+            /* temperature */
+            case 4 :
+            {
+                temp = atof(optarg);
+                
+                break;
+            }
+            
+            /* running times */
+            case 5 :
+            {
+                /* set the times */
+                times = atol(optarg);
+                
+                break;
+            } 
+            
+            /* the end */
+            case -1 :
+            {
+                break;
+            }
+            
+            /* others */
+            default :
+            {
+                return 5;
+            }
+        }
+    } while (c != -1);
+
+    /* run the function */
+    if (strcmp("t_reg", type) == 0)
+    {
+        /* run reg test */
+        if (sgp30_register_test() != 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else if (strcmp("t_read", type) == 0)
+    {
+        /* run read test */
+        if (sgp30_read_test(times) != 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else if (strcmp("e_read", type) == 0)
+    {
+        uint8_t res;
+        uint32_t i;
+        
+        /* init */
+        res = sgp30_basic_init();
+        if (res != 0)
+        {
+            return 1;
+        }
+        
+        /* loop */
+        for (i = 0; i < times; i++)
+        {
+            /* delay 1000ms */
+            sgp30_interface_delay_ms(1000);
+            
+            /* read data */
+            res = sgp30_basic_read((uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
+            if (res != 0)
+            {
                 (void)sgp30_basic_deinit();
                 
-                return 0;
+                return 1;
             }
-            /* param is invalid */
-            else
-            {
-                return 5;
-            }
+            
+            /* output */
+            sgp30_interface_debug_print("sgp30: %d/%d.\n", (uint32_t)(i + 1), (uint32_t)times);
+            sgp30_interface_debug_print("sgp30: co2 eq is %d ppm.\n", co2_eq_ppm);
+            sgp30_interface_debug_print("sgp30: tvoc is %d ppb.\n", tvoc_ppb);
         }
-        /* param is invalid */
-        else
-        {
-            return 5;
-        }
+        
+        /* deinit */
+        (void)sgp30_basic_deinit();
+        
+        return 0;
     }
-    else if (argc == 5)
+    else if (strcmp("e_advance-read", type) == 0)
     {
-        /* run advance */
-        if (strcmp("-c", argv[1]) == 0)
+        uint8_t res;
+        uint32_t i;
+        
+        /* init */
+        res = sgp30_advance_init();
+        if (res != 0)
         {
-             /* advance */
-            if (strcmp("advance", argv[2]) == 0)
-            {
-                if (strcmp("-read", argv[3]) == 0)
-                {
-                    uint8_t res;
-                    uint32_t times;
-                    uint32_t i;
-                    uint16_t co2_eq_ppm;
-                    uint16_t tvoc_ppb;
-                    
-                    res = sgp30_advance_init();
-                    if (res != 0)
-                    {
-                        return 1;
-                    }
-                    times = atoi(argv[4]);
-                    for (i = 0; i < times; i++)
-                    {
-                        sgp30_interface_delay_ms(1000);
-                        res = sgp30_advance_read((uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
-                        if (res != 0)
-                        {
-                            (void)sgp30_advance_deinit();
-                            
-                            return 1;
-                        }
-                        sgp30_interface_debug_print("sgp30: %d/%d.\n", (uint32_t)(i+1), (uint32_t)times);
-                        sgp30_interface_debug_print("sgp30: co2 eq is %d ppm.\n", co2_eq_ppm);
-                        sgp30_interface_debug_print("sgp30: tvoc is %d ppb.\n", tvoc_ppb);
-                    }
-                    (void)sgp30_advance_deinit();
-                    
-                    return 0;
-                }
-                else if (strcmp("-info", argv[3]) == 0)
-                {
-                    uint8_t res;
-                     
-                    res = sgp30_advance_init();
-                    if (res != 0)
-                    {
-                        return 1;
-                    }
-                    if (strcmp("id", argv[4]) == 0)
-                    {
-                        uint16_t id[3];
-                        
-                        res = sgp30_advance_get_serial_id((uint16_t *)id);
-                        if (res != 0)
-                        {
-                            (void)sgp30_advance_deinit();
-                            
-                            return 1;
-                        }
-                        sgp30_interface_debug_print("sgp30: serial id 0x%04X 0x%04X 0x%04X.\n", (uint16_t)(id[0]), (uint16_t)(id[1]), (uint16_t)(id[2]));
-                        (void)sgp30_advance_deinit();
-                        
-                        return 0;
-                    }
-                    else if (strcmp("product", argv[4]) == 0)
-                    {
-                        uint8_t product_type;
-                        uint8_t product_version;
-                        
-                        res = sgp30_advance_get_feature((uint8_t *)&product_type, (uint8_t *)&product_version);
-                        if (res != 0)
-                        {
-                            (void)sgp30_advance_deinit();
-                            
-                            return 1;
-                        }
-                        sgp30_interface_debug_print("sgp30: product type is 0x%02X.\n", product_type);
-                        sgp30_interface_debug_print("sgp30: product version is 0x%02X.\n", product_version);
-                        (void)sgp30_advance_deinit();
-                        
-                        return 0;
-                    }
-                    else
-                    {
-                        sgp30_interface_debug_print("sgp30: info is invalid.\n");
-                        (void)sgp30_advance_deinit();
-                        
-                        return 5;
-                    }
-                }
-                /* param is invalid */
-                else
-                {
-                    return 5;
-                }
-            }
-            /* param is invalid */
-            else
-            {
-                return 5;
-            }
+            return 1;
         }
-        /* param is invalid */
-        else
+        
+        /* set the iaq baseline */
+        res = sgp30_advance_set_iaq_baseline(tvoc_ppb, co2_eq_ppm);
+        if (res != 0)
         {
-            return 5;
+            (void)sgp30_advance_deinit();
+            
+            return 1;
         }
+        
+        /* set the temp && rh */
+        res = sgp30_advance_set_absolute_humidity(temp, rh);
+        if (res != 0)
+        {
+            (void)sgp30_advance_deinit();
+            
+            return 1;
+        }
+        
+        /* loop */
+        for (i = 0; i < times; i++)
+        {
+            /* delay 1000ms */
+            sgp30_interface_delay_ms(1000);
+            
+            /* read data */
+            res = sgp30_advance_read((uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
+            if (res != 0)
+            {
+                (void)sgp30_advance_deinit();
+                
+                return 1;
+            }
+            
+            /* output */
+            sgp30_interface_debug_print("sgp30: %d/%d.\n", (uint32_t)(i + 1), (uint32_t)times);
+            sgp30_interface_debug_print("sgp30: co2 eq is %d ppm.\n", co2_eq_ppm);
+            sgp30_interface_debug_print("sgp30: tvoc is %d ppb.\n", tvoc_ppb);
+        }
+        
+        /* deinit */
+        (void)sgp30_advance_deinit();
+        
+        return 0;
     }
-    else if (argc == 8)
+    else if (strcmp("e_info", type) == 0)
     {
-        /* run advance */
-        if (strcmp("-c", argv[1]) == 0)
+        uint8_t res;
+        uint8_t product_type;
+        uint8_t product_version;
+        uint16_t id[3];
+        
+        /* init */
+        res = sgp30_advance_init();
+        if (res != 0)
         {
-             /* advance */
-            if (strcmp("advance", argv[2]) == 0)
-            {
-                if (strcmp("-read", argv[3]) == 0)
-                {
-                    uint8_t res;
-                    uint32_t i, times;
-                    uint16_t co2_eq_ppm;
-                    uint16_t tvoc_ppb;
-                    
-                    res = sgp30_advance_init();
-                    if (res != 0)
-                    {
-                        return 1;
-                    }
-                    times = atoi(argv[4]);
-                    if (strcmp("-baseline", argv[5]) == 0)
-                    {
-                        sgp30_interface_debug_print("sgp30: tvoc is 0x%04X.\n", atoi(argv[6]));
-                        sgp30_interface_debug_print("sgp30: co2 eq is 0x%04X.\n", atoi(argv[7]));
-                        res = sgp30_advance_set_iaq_baseline((uint16_t)atoi(argv[6]), (uint16_t)atoi(argv[7]));
-                        if (res != 0)
-                        {
-                            (void)sgp30_advance_deinit();
-                            
-                            return 1;
-                        }
-                        for (i = 0; i < times; i++)
-                        {
-                            sgp30_interface_delay_ms(1000);
-                            res = sgp30_advance_read((uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
-                            if (res != 0)
-                            {
-                                (void)sgp30_advance_deinit();
-                                
-                                return 1;
-                            }
-                            sgp30_interface_debug_print("sgp30: %d/%d.\n", (uint32_t)(i+1), (uint32_t)times);
-                            sgp30_interface_debug_print("sgp30: co2 eq is %d ppm.\n", co2_eq_ppm);
-                            sgp30_interface_debug_print("sgp30: tvoc is %d ppb.\n", tvoc_ppb);
-                        }
-                        (void)sgp30_advance_deinit();
-                        
-                        return 0;
-                    }
-                    else if (strcmp("-humidity", argv[5]) == 0)
-                    {
-                        sgp30_interface_debug_print("sgp30: temp is %0.2fC.\n", atof(argv[6]));
-                        sgp30_interface_debug_print("sgp30: rh is %0.2f%%.\n", atof(argv[7]));
-                        res = sgp30_advance_set_absolute_humidity((float)atof(argv[6]), (float)atof(argv[7]));
-                        if (res != 0)
-                        {
-                            (void)sgp30_advance_deinit();
-                            
-                            return 1;
-                        }
-                        for (i = 0; i < times; i++)
-                        {
-                            sgp30_interface_delay_ms(1000);
-                            res = sgp30_advance_read((uint16_t *)&co2_eq_ppm, (uint16_t *)&tvoc_ppb);
-                            if (res != 0)
-                            {
-                                (void)sgp30_advance_deinit();
-                                
-                                return 1;
-                            }
-                            sgp30_interface_debug_print("sgp30: %d/%d.\n", (uint32_t)(i+1), (uint32_t)times);
-                            sgp30_interface_debug_print("sgp30: co2 eq is %d ppm.\n", co2_eq_ppm);
-                            sgp30_interface_debug_print("sgp30: tvoc is %d ppb.\n", tvoc_ppb);
-                        }
-                        (void)sgp30_advance_deinit();
-                        
-                        return 0;
-                    }
-                    /* param is invalid */
-                    else
-                    {
-                        (void)sgp30_advance_deinit();
-                        
-                        return 5;
-                    }
-                }
-                /* param is invalid */
-                else
-                {
-                    return 5;
-                }
-            }
-            /* param is invalid */
-            else
-            {
-                return 5;
-            }
+            return 1;
         }
-        /* param is invalid */
-        else
+        
+        /* get the id */
+        res = sgp30_advance_get_serial_id((uint16_t *)id);
+        if (res != 0)
         {
-            return 5;
+            (void)sgp30_advance_deinit();
+            
+            return 1;
         }
+        
+        /* get the type */
+        res = sgp30_advance_get_feature((uint8_t *)&product_type, (uint8_t *)&product_version);
+        if (res != 0)
+        {
+            (void)sgp30_advance_deinit();
+            
+            return 1;
+        }
+        
+        /* output */
+        sgp30_interface_debug_print("sgp30: serial id 0x%04X 0x%04X 0x%04X.\n", (uint16_t)(id[0]), (uint16_t)(id[1]), (uint16_t)(id[2]));
+        sgp30_interface_debug_print("sgp30: product type is 0x%02X.\n", product_type);
+        sgp30_interface_debug_print("sgp30: product version is 0x%02X.\n", product_version);
+        
+        /* deinit */
+        (void)sgp30_advance_deinit();
+        
+        return 0;
     }
-    /* param is invalid */
+    else if (strcmp("h", type) == 0)
+    {
+        help:
+        sgp30_interface_debug_print("Usage:\n");
+        sgp30_interface_debug_print("  sgp30 (-i | --information)\n");
+        sgp30_interface_debug_print("  sgp30 (-h | --help)\n");
+        sgp30_interface_debug_print("  sgp30 (-p | --port)\n");
+        sgp30_interface_debug_print("  sgp30 (-t reg | --test=reg)\n");
+        sgp30_interface_debug_print("  sgp30 (-t read | --test=read) [--times=<num>]\n");
+        sgp30_interface_debug_print("  sgp30 (-e read | --example=read) [--times=<num>]\n");
+        sgp30_interface_debug_print("  sgp30 (-e advance-read | --example=advance-read) [--times=<num>] [--baseline-tvoc=<ppb>] [--baseline-co2eq=<ppm>]\n");
+        sgp30_interface_debug_print("        [--humidity-temperature=<temp>] [--humidity-rh=<rh>]\n");
+        sgp30_interface_debug_print("  spg30 (-e info | --example=info)\n");
+        sgp30_interface_debug_print("\n");
+        sgp30_interface_debug_print("Options:\n");
+        sgp30_interface_debug_print("      --baseline-co2eq=<ppm>              Set the co2eq baseline.([default: 0])\n");
+        sgp30_interface_debug_print("      --baseline-tvoc=<ppb>               Set the tvoc baseline.([default: 0])\n");
+        sgp30_interface_debug_print("  -e <read | advance-read | info>, --example=<read | advance-read | info>\n");
+        sgp30_interface_debug_print("                                          Run the driver example.\n");
+        sgp30_interface_debug_print("  -h, --help                              Show the help.\n");
+        sgp30_interface_debug_print("      --humidity-rh=<rh>                  Set the humidity rh.([default: 50.0f])\n");
+        sgp30_interface_debug_print("      --humidity-temperature=<temp>       Set the humidity temperature.([default: 25.0f])\n");
+        sgp30_interface_debug_print("  -i, --information                       Show the chip information.\n");
+        sgp30_interface_debug_print("  -p, --port                              Display the pin connections of the current board.\n");
+        sgp30_interface_debug_print("  -t <reg | read>, --test=<reg | read>    Run the driver test.\n");
+        sgp30_interface_debug_print("      --times=<num>                       Set the running times.([default: 3])\n");
+        
+        return 0;
+    }
+    else if (strcmp("i", type) == 0)
+    {
+        sgp30_info_t info;
+        
+        /* print sgp30 info */
+        sgp30_info(&info);
+        sgp30_interface_debug_print("sgp30: chip is %s.\n", info.chip_name);
+        sgp30_interface_debug_print("sgp30: manufacturer is %s.\n", info.manufacturer_name);
+        sgp30_interface_debug_print("sgp30: interface is %s.\n", info.interface);
+        sgp30_interface_debug_print("sgp30: driver version is %d.%d.\n", info.driver_version / 1000, (info.driver_version % 1000) / 100);
+        sgp30_interface_debug_print("sgp30: min supply voltage is %0.1fV.\n", info.supply_voltage_min_v);
+        sgp30_interface_debug_print("sgp30: max supply voltage is %0.1fV.\n", info.supply_voltage_max_v);
+        sgp30_interface_debug_print("sgp30: max current is %0.2fmA.\n", info.max_current_ma);
+        sgp30_interface_debug_print("sgp30: max temperature is %0.1fC.\n", info.temperature_max);
+        sgp30_interface_debug_print("sgp30: min temperature is %0.1fC.\n", info.temperature_min);
+        
+        return 0;
+    }
+    else if (strcmp("p", type) == 0)
+    {
+        /* print pin connection */
+        sgp30_interface_debug_print("sgp30: SCL connected to GPIO3(BCM).\n");
+        sgp30_interface_debug_print("sgp30: SDA connected to GPIO2(BCM).\n");
+        
+        return 0;
+    }
     else
     {
         return 5;

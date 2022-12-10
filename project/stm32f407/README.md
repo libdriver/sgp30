@@ -2,59 +2,91 @@
 
 #### 1.1 Chip Info
 
-chip name : STM32F407ZGT6.
+Chip Name: STM32F407ZGT6.
 
-extern oscillator : 8MHz.
+Extern Oscillator: 8MHz.
 
-uart pin: TX/RX PA9/PA10.
+UART Pin: TX/RX PA9/PA10.
 
-iic pin: SCL/SDA PB8/PB9.
+IIC Pin: SCL/SDA PB8/PB9.
 
-### 2. Shell
+### 2. Development and Debugging
 
-#### 2.1 Shell Parameter
+#### 2.1 Integrated Development Environment
 
-baud rate: 115200.
+LidDriver provides both Keil and IAR integrated development environment projects.
 
-data bits : 8.
+MDK is the Keil ARM project and your Keil version must be 5 or higher.Keil ARM project needs STMicroelectronics STM32F4 Series Device Family Pack and you can download from https://www.keil.com/dd2/stmicroelectronics/stm32f407zgtx.
 
-stop bits: 1.
+EW is the IAR ARM project and your IAR version must be 9 or higher.
 
-parity: none.
+#### 2.2 Serial Port Parameter
 
-flow control: none.
+Baud Rate: 115200.
+
+Data Bits : 8.
+
+Stop Bits: 1.
+
+Parity: None.
+
+Flow Control: None.
+
+#### 2.3 Serial Port Assistant
+
+We use '\n' to wrap lines.If your serial port assistant displays exceptions (e.g. the displayed content does not divide lines), please modify the configuration of your serial port assistant or replace one that supports '\n' parsing.
 
 ### 3. SGP30
 
 #### 3.1 Command Instruction
 
-​          sgp30 is a basic command which can test all sgp30 driver function:
+1. Show sgp30 chip and driver information.
 
-​           -i        show sgp30 chip and driver information.
+   ```shell
+   sgp30 (-i | --information)
+   ```
 
-​           -h       show sgp30 help.
+2. Show sgp30 help.
 
-​           -p       show sgp30 pin connections of the current board.
+   ```shell
+   sgp30 (-h | --help)
+   ```
 
-​           -t (reg | read <times>)           
+3. Show sgp30 pin connections of the current board.
 
-​           -t reg        run sgp30 register test.
+   ```shell
+   sgp30 (-p | --port)
+   ```
 
-​           -t read <times>        run spg30 read test. times means test times.
+4. Run sgp30 register test.
 
-​           -c (read <times> | advance (-read <times>|-read <times> (-baseline <tvoc> <co2eq>|-humidity <temperature> <rh>)) | -info (id | product)))
+   ```shell
+   sgp30 (-t reg | --test=reg)
+   ```
 
-​           -c read <times>        run spg30 read function. times means read times.
+5. Run spg30 read test, times means test times.
 
-​           -c advance -read <times>        run spg30 advance read function. times means read times.
+   ```shell
+   sgp30 (-t read | --test=read) [--times=<num>]
+   ```
 
-​           -c advance -read <times> -baseline <tvoc> <co2eq>        run spg30 advance read function with baseline. times means read times. tvoc means current tvoc. co2eq means current co2eq.
+6. Run spg30 read function, times means read times.
 
-​           -c advance -read <times> -humidity <temperature> <rh>        run spg30 advance read function with humidity. times means read times. temperature means current temperature.rh means current relative humidity.
+   ```shell
+   sgp30 (-e read | --example=read) [--times=<num>]
+   ```
 
-​           -c -info id        get spg30 id information.
+7. Run spg30 advance read function, times means read times, ppb means current tvoc, ppm means current co2eq, temp means current temperature and rh means current relative humidity.
 
-​           -c -info product        get spg30 product information.
+   ```shell
+   sgp30 (-e advance-read | --example=advance-read) [--times=<num>] [--baseline-tvoc=<ppb>] [--baseline-co2eq=<ppm>] [--humidity-temperature=<temp>] [--humidity-rh=<rh>]
+   ```
+
+8. Get spg30 id and product information.
+
+   ```shell
+   spg30 (-e info | --example=info)
+   ```
 
 #### 3.2 Command Example
 
@@ -117,7 +149,7 @@ sgp30: finish register test.
 ```
 
 ```shell
-sgp30 -t read 3
+sgp30 -t read --times=3
 
 sgp30: chip is Sensirion SGP30.
 sgp30: manufacturer is Sensirion.
@@ -130,12 +162,12 @@ sgp30: max temperature is 85.0C.
 sgp30: min temperature is -40.0C.
 sgp30: start read test.
 sgp30: raw read.
-sgp30: raw co2 eq is 13198.
-sgp30: raw tvoc is 18242.
-sgp30: raw co2 eq is 13487.
-sgp30: raw tvoc is 18442.
-sgp30: raw co2 eq is 13614.
-sgp30: raw tvoc is 18570.
+sgp30: raw co2 eq is 12876.
+sgp30: raw tvoc is 17579.
+sgp30: raw co2 eq is 13382.
+sgp30: raw tvoc is 18211.
+sgp30: raw co2 eq is 13642.
+sgp30: raw tvoc is 18669.
 sgp30: normal read.
 sgp30: co2 eq is 400 ppm.
 sgp30: tvoc is 0 ppb.
@@ -147,7 +179,7 @@ sgp30: finish read test.
 ```
 
 ```shell
-sgp30 -c read 3
+sgp30 -e read --times=3
 
 sgp30: 1/3.
 sgp30: co2 eq is 400 ppm.
@@ -161,7 +193,7 @@ sgp30: tvoc is 0 ppb.
 ```
 
 ```shell
-sgp30 -c advance -read 3
+sgp30 -e advance-read --times=3 --baseline-tvoc=0 --baseline-co2eq=1 --humidity-temperature=25.0 --humidity-rh=50.0
 
 sgp30: 1/3.
 sgp30: co2 eq is 400 ppm.
@@ -175,46 +207,9 @@ sgp30: tvoc is 0 ppb.
 ```
 
 ```shell
-sgp30 -c advance -read 3 -baseline 0 1
-
-sgp30: tvoc is 0x0000.
-sgp30: co2 eq is 0x0001.
-sgp30: 1/3.
-sgp30: co2 eq is 400 ppm.
-sgp30: tvoc is 0 ppb.
-sgp30: 2/3.
-sgp30: co2 eq is 400 ppm.
-sgp30: tvoc is 0 ppb.
-sgp30: 3/3.
-sgp30: co2 eq is 400 ppm.
-sgp30: tvoc is 0 ppb.
-```
-
-```shell
-sgp30 -c advance -read 3 -humidity 25.1 30.2
-
-sgp30: temp is 25.10C.
-sgp30: rh is 30.20%.
-sgp30: 1/3.
-sgp30: co2 eq is 400 ppm.
-sgp30: tvoc is 0 ppb.
-sgp30: 2/3.
-sgp30: co2 eq is 400 ppm.
-sgp30: tvoc is 0 ppb.
-sgp30: 3/3.
-sgp30: co2 eq is 400 ppm.
-sgp30: tvoc is 0 ppb.
-```
-
-```shell
-sgp30 -c advance -info id
+sgp30 -e info
 
 sgp30: serial id 0x0000 0x014C 0x3E62.
-```
-
-```shell
-sgp30 -c advance -info product
-
 sgp30: product type is 0x00.
 sgp30: product version is 0x22.
 ```
@@ -222,27 +217,28 @@ sgp30: product version is 0x22.
 ```shell
 sgp30 -h
 
-sgp30 -i
-	show sgp30 chip and driver information.
-sgp30 -h
-	show sgp30 help.
-sgp30 -p
-	show sgp30 pin connections of the current board.
-sgp30 -t reg
-	run sgp30 register test.
-sgp30 -t read <times>
-	run sgp30 read test.times means test times.
-sgp30 -c read <times>
-	run spg30 read function.times means read times.
-sgp30 -c advance -read <times>
-	run spg30 advance read function.times means read times.
-sgp30 -c advance -read <times> -baseline <tvoc> <co2eq>
-	run spg30 advance read function with baseline.times means read times.tvoc means current tvoc.co2eq means current co2eq.
-sgp30 -c advance -read <times> -humidity <temperature> <rh>
-	run spg30 advance read function with humidity.times means read times.temperature means current temperature.rh means current relative humidity.
-sgp30 -c -info id
-	get spg30 id information.
-sgp30 -c -info product
-	get spg30 product information.
+Usage:
+  sgp30 (-i | --information)
+  sgp30 (-h | --help)
+  sgp30 (-p | --port)
+  sgp30 (-t reg | --test=reg)
+  sgp30 (-t read | --test=read) [--times=<num>]
+  sgp30 (-e read | --example=read) [--times=<num>]
+  sgp30 (-e advance-read | --example=advance-read) [--times=<num>] [--baseline-tvoc=<ppb>] [--baseline-co2eq=<ppm>]
+        [--humidity-temperature=<temp>] [--humidity-rh=<rh>]
+  spg30 (-e info | --example=info)
+
+Options:
+      --baseline-co2eq=<ppm>              Set the co2eq baseline.([default: 0])
+      --baseline-tvoc=<ppb>               Set the tvoc baseline.([default: 0])
+  -e <read | advance-read | info>, --example=<read | advance-read | info>
+                                          Run the driver example.
+  -h, --help                              Show the help.
+      --humidity-rh=<rh>                  Set the humidity rh.([default: 50.0f])
+      --humidity-temperature=<temp>       Set the humidity temperature.([default: 25.0f])
+  -i, --information                       Show the chip information.
+  -p, --port                              Display the pin connections of the current board.
+  -t <reg | read>, --test=<reg | read>    Run the driver test.
+      --times=<num>                       Set the running times.([default: 3])
 ```
 
