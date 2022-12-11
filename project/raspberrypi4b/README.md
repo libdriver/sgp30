@@ -84,7 +84,7 @@ find_package(sgp30 REQUIRED)
 
 #### 2.5 Problem
 
-**There is some unknown problem in the iic interface of sgp30 on the raspberry board.One command may try many times to run successfully.**
+There is some unknown problem in the iic interface of sgp30 on the raspberry board.One command may try many times to run successfully.
 
 ### 3. SGP30
 
