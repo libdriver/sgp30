@@ -64,19 +64,19 @@ We use '\n' to wrap lines.If your serial port assistant displays exceptions (e.g
    sgp30 (-t reg | --test=reg)
    ```
 
-5. Run spg30 read test, times means test times.
+5. Run spg30 read test, num means test times.
 
    ```shell
    sgp30 (-t read | --test=read) [--times=<num>]
    ```
 
-6. Run spg30 read function, times means read times.
+6. Run spg30 read function, num means read times.
 
    ```shell
    sgp30 (-e read | --example=read) [--times=<num>]
    ```
 
-7. Run spg30 advance read function, times means read times, ppb means current tvoc, ppm means current co2eq, temp means current temperature and rh means current relative humidity.
+7. Run spg30 advance read function, num means read times, ppb means current tvoc, ppm means current co2eq, temp means current temperature and rh means current relative humidity.
 
    ```shell
    sgp30 (-e advance-read | --example=advance-read) [--times=<num>] [--baseline-tvoc=<ppb>] [--baseline-co2eq=<ppm>] [--humidity-temperature=<temp>] [--humidity-rh=<rh>]
