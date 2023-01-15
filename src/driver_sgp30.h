@@ -101,7 +101,7 @@ typedef struct sgp30_info_s
 
 /**
  * @brief     initialize sgp30_handle_t structure
- * @param[in] HANDLE points to a sgp30 handle structure
+ * @param[in] HANDLE points to an sgp30 handle structure
  * @param[in] STRUCTURE is sgp30_handle_t
  * @note      none
  */
@@ -109,7 +109,7 @@ typedef struct sgp30_info_s
 
 /**
  * @brief     link iic_init function
- * @param[in] HANDLE points to a sgp30 handle structure
+ * @param[in] HANDLE points to an sgp30 handle structure
  * @param[in] FUC points to an iic_init function address
  * @note      none
  */
@@ -117,7 +117,7 @@ typedef struct sgp30_info_s
 
 /**
  * @brief     link iic_deinit function
- * @param[in] HANDLE points to a sgp30 handle structure
+ * @param[in] HANDLE points to an sgp30 handle structure
  * @param[in] FUC points to an iic_deinit function address
  * @note      none
  */
@@ -125,7 +125,7 @@ typedef struct sgp30_info_s
 
 /**
  * @brief     link iic_write_cmd function
- * @param[in] HANDLE points to a sgp30 handle structure
+ * @param[in] HANDLE points to an sgp30 handle structure
  * @param[in] FUC points to an iic_write_cmd function address
  * @note      none
  */
@@ -133,7 +133,7 @@ typedef struct sgp30_info_s
 
 /**
  * @brief     link iic_read_cmd function
- * @param[in] HANDLE points to a sgp30 handle structure
+ * @param[in] HANDLE points to an sgp30 handle structure
  * @param[in] FUC points to an iic_read_cmd function address
  * @note      none
  */
@@ -141,7 +141,7 @@ typedef struct sgp30_info_s
 
 /**
  * @brief     link delay_ms function
- * @param[in] HANDLE points to a sgp30 handle structure
+ * @param[in] HANDLE points to an sgp30 handle structure
  * @param[in] FUC points to a delay_ms function address
  * @note      none
  */
@@ -149,7 +149,7 @@ typedef struct sgp30_info_s
 
 /**
  * @brief     link debug_print function
- * @param[in] HANDLE points to a sgp30 handle structure
+ * @param[in] HANDLE points to an sgp30 handle structure
  * @param[in] FUC points to a debug_print function address
  * @note      none
  */
@@ -168,7 +168,7 @@ typedef struct sgp30_info_s
 
 /**
  * @brief      get chip information
- * @param[out] *info points to a sgp30 info structure
+ * @param[out] *info points to an sgp30 info structure
  * @return     status code
  *             - 0 success
  *             - 2 handle is NULL
@@ -178,7 +178,7 @@ uint8_t sgp30_info(sgp30_info_t *info);
 
 /**
  * @brief     initialize the chip
- * @param[in] *handle points to a sgp30 handle structure
+ * @param[in] *handle points to an sgp30 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 iic initialization failed
@@ -190,7 +190,7 @@ uint8_t sgp30_init(sgp30_handle_t *handle);
 
 /**
  * @brief     close the chip
- * @param[in] *handle points to a sgp30 handle structure
+ * @param[in] *handle points to an sgp30 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 iic deinit failed
@@ -203,7 +203,7 @@ uint8_t sgp30_deinit(sgp30_handle_t *handle);
 
 /**
  * @brief     initialize the chip iaq 
- * @param[in] *handle points to a sgp30 handle structure
+ * @param[in] *handle points to an sgp30 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 iaq init failed
@@ -215,7 +215,7 @@ uint8_t sgp30_iaq_init(sgp30_handle_t *handle);
 
 /**
  * @brief      read the iaq measure result
- * @param[in]  *handle points to a sgp30 handle structure
+ * @param[in]  *handle points to an sgp30 handle structure
  * @param[out] *co2_eq_ppm points to a co2 buffer
  * @param[out] *tvoc_ppb points to a tvoc buffer
  * @return     status code
@@ -229,7 +229,7 @@ uint8_t sgp30_read(sgp30_handle_t *handle, uint16_t *co2_eq_ppm, uint16_t *tvoc_
 
 /**
  * @brief      get the iaq measure result
- * @param[in]  *handle points to a sgp30 handle structure
+ * @param[in]  *handle points to an sgp30 handle structure
  * @param[out] *co2_eq_ppm points to a co2 buffer
  * @param[out] *tvoc_ppb points to a tvoc buffer
  * @return     status code
@@ -243,7 +243,7 @@ uint8_t sgp30_measure_iaq(sgp30_handle_t *handle, uint16_t *co2_eq_ppm, uint16_t
 
 /**
  * @brief      get the iaq measure raw result
- * @param[in]  *handle points to a sgp30 handle structure
+ * @param[in]  *handle points to an sgp30 handle structure
  * @param[out] *tvoc points to a tvoc buffer
  * @param[out] *co2_eq points to a co2 buffer
  * @return     status code
@@ -257,7 +257,7 @@ uint8_t sgp30_get_measure_raw(sgp30_handle_t *handle, uint16_t *tvoc, uint16_t *
 
 /**
  * @brief     set the chip tvoc baseline
- * @param[in] *handle points to a sgp30 handle structure
+ * @param[in] *handle points to an sgp30 handle structure
  * @param[in] tvoc_baseline is the current tvoc baseline
  * @return    status code
  *            - 0 success
@@ -270,7 +270,7 @@ uint8_t sgp30_set_tvoc_baseline(sgp30_handle_t *handle, uint16_t tvoc_baseline);
 
 /**
  * @brief      get the chip tvoc inceptive baseline
- * @param[in]  *handle points to a sgp30 handle structure
+ * @param[in]  *handle points to an sgp30 handle structure
  * @param[out] *tvoc_baseline points to a current tvoc baseline buffer
  * @return     status code
  *             - 0 success
@@ -283,7 +283,7 @@ uint8_t sgp30_get_tvoc_inceptive_baseline(sgp30_handle_t *handle, uint16_t *tvoc
 
 /**
  * @brief     soft reset the chip
- * @param[in] *handle points to a sgp30 handle structure
+ * @param[in] *handle points to an sgp30 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 soft reset failed
@@ -295,7 +295,7 @@ uint8_t sgp30_soft_reset(sgp30_handle_t *handle);
 
 /**
  * @brief      get the chip serial id
- * @param[in]  *handle points to a sgp30 handle structure
+ * @param[in]  *handle points to an sgp30 handle structure
  * @param[out] *id points to an id buffer
  * @return     status code
  *             - 0 success
@@ -308,7 +308,7 @@ uint8_t sgp30_get_serial_id(sgp30_handle_t *handle, uint16_t id[3]);
 
 /**
  * @brief     set the chip iaq baseline
- * @param[in] *handle points to a sgp30 handle structure
+ * @param[in] *handle points to an sgp30 handle structure
  * @param[in] tvoc is the current tvoc
  * @param[in] co2_eq is the current co2 eq
  * @return    status code
@@ -322,7 +322,7 @@ uint8_t sgp30_set_iaq_baseline(sgp30_handle_t *handle, uint16_t tvoc, uint16_t c
 
 /**
  * @brief      get the chip iaq baseline
- * @param[in]  *handle points to a sgp30 handle structure
+ * @param[in]  *handle points to an sgp30 handle structure
  * @param[out] *tvoc points to a tvoc buffer
  * @param[out] *co2_eq points to a co2 buffer
  * @return     status code
@@ -336,7 +336,7 @@ uint8_t sgp30_get_iaq_baseline(sgp30_handle_t *handle, uint16_t *tvoc, uint16_t 
 
 /**
  * @brief     set the chip absolute_humidity
- * @param[in] *handle points to a sgp30 handle structure
+ * @param[in] *handle points to an sgp30 handle structure
  * @param[in] humidity is the current absolute_humidity
  * @return    status code
  *            - 0 success
@@ -349,7 +349,7 @@ uint8_t sgp30_set_absolute_humidity(sgp30_handle_t *handle, uint16_t humidity);
 
 /**
  * @brief      convert the absolute humidity to the register data
- * @param[in]  *handle points to a sgp30 handle structure
+ * @param[in]  *handle points to an sgp30 handle structure
  * @param[in]  temp is the current temperature 
  * @param[in]  rh is the current relative humidity
  * @param[out] *reg points to a converted register data
@@ -364,7 +364,7 @@ uint8_t sgp30_absolute_humidity_convert_to_register(sgp30_handle_t *handle, floa
 
 /**
  * @brief      run the chip measure test
- * @param[in]  *handle points to a sgp30 handle structure
+ * @param[in]  *handle points to an sgp30 handle structure
  * @param[out] *result points to a test result buffer
  * @return     status code
  *             - 0 success
@@ -377,7 +377,7 @@ uint8_t sgp30_measure_test(sgp30_handle_t *handle, uint16_t *result);
 
 /**
  * @brief      get the chip feature
- * @param[in]  *handle points to a sgp30 handle structure
+ * @param[in]  *handle points to an sgp30 handle structure
  * @param[out] *product_type points to a product type buffer
  * @param[out] *product_version points to a product version buffer
  * @return     status code
@@ -391,7 +391,7 @@ uint8_t sgp30_get_feature_set(sgp30_handle_t *handle, uint8_t *product_type, uin
 
 /**
  * @brief      get the iaq measure raw result
- * @param[in]  *handle points to a sgp30 handle structure
+ * @param[in]  *handle points to an sgp30 handle structure
  * @param[out] *tvoc points to a tvoc buffer
  * @param[out] *co2_eq points to a co2 buffer
  * @return     status code
@@ -416,7 +416,7 @@ uint8_t sgp30_get_measure_raw(sgp30_handle_t *handle, uint16_t *tvoc, uint16_t *
 
 /**
  * @brief     set the chip register
- * @param[in] *handle points to a sgp30 handle structure
+ * @param[in] *handle points to an sgp30 handle structure
  * @param[in] reg is the iic register address
  * @param[in] *buf points to a data buffer
  * @param[in] len is the data buffer length
@@ -431,7 +431,7 @@ uint8_t sgp30_set_reg(sgp30_handle_t *handle, uint16_t reg, uint8_t *buf, uint16
 
 /**
  * @brief      get the chip register
- * @param[in]  *handle points to a sgp30 handle structure
+ * @param[in]  *handle points to an sgp30 handle structure
  * @param[in]  reg is the iic register address
  * @param[out] *buf points to a data buffer
  * @param[in]  len is the data buffer length
