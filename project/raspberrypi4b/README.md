@@ -82,10 +82,6 @@ Find the compiled library in CMake.
 find_package(sgp30 REQUIRED)
 ```
 
-#### 2.5 Problem
-
-There is some unknown problem in the iic interface of sgp30 on the raspberry board.One command may try many times to run successfully.
-
 ### 3. SGP30
 
 #### 3.1 Command Instruction
@@ -292,3 +288,6 @@ Options:
       --times=<num>                       Set the running times.([default: 3])
 ```
 
+#### 3.3 Command Problem
+
+There is some unknown problem in the iic interface of sgp30 on the raspberry board, one command may try many times to run successfully.
