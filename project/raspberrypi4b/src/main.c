@@ -70,7 +70,7 @@ uint8_t sgp30(uint8_t argc, char **argv)
         {"times", required_argument, NULL, 5},
         {NULL, 0, NULL, 0},
     };
-    char type[33] = "unknow";
+    char type[33] = "unknown";
     uint32_t times = 3;
     uint16_t co2_eq_ppm = 0;
     uint16_t tvoc_ppb = 0;
@@ -149,7 +149,7 @@ uint8_t sgp30(uint8_t argc, char **argv)
             /* baseline co2eq */
             case 1 :
             {
-                /* set the baseline co2eq */
+                /* set the baseline co2 eq */
                 co2_eq_ppm = atoi(optarg);
                 
                 break;
@@ -452,7 +452,7 @@ int main(uint8_t argc, char **argv)
     }
     else
     {
-        sgp30_interface_debug_print("sgp30: unknow status code.\n");
+        sgp30_interface_debug_print("sgp30: unknown status code.\n");
     }
 
     return 0;
