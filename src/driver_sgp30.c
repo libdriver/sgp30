@@ -691,10 +691,10 @@ uint8_t sgp30_get_feature_set(sgp30_handle_t *handle, uint8_t *product_type, uin
     }
 
     memset(buf, 0, sizeof(uint8_t) * 3);                                                                      /* clear the buffer */
-    res = a_sgp30_iic_read(handle, SGP30_ADDRESS, SGP30_COMMAND_GET_FEATURE_SET, (uint8_t *)buf, 3, 10);      /* read get featrue set */
+    res = a_sgp30_iic_read(handle, SGP30_ADDRESS, SGP30_COMMAND_GET_FEATURE_SET, (uint8_t *)buf, 3, 10);      /* read get feature set */
     if (res != 0)                                                                                             /* check result */
     {
-        handle->debug_print("sgp30: get fearure set failed.\n");                                              /* get feature set failed */
+        handle->debug_print("sgp30: get feature set failed.\n");                                              /* get feature set failed */
        
         return 1;                                                                                             /* return error */
     }
@@ -993,7 +993,7 @@ uint8_t sgp30_info(sgp30_info_t *info)
     info->max_current_ma = MAX_CURRENT;                             /* set maximum current */
     info->temperature_max = TEMPERATURE_MAX;                        /* set minimal temperature */
     info->temperature_min = TEMPERATURE_MIN;                        /* set maximum temperature */
-    info->driver_version = DRIVER_VERSION;                          /* set driver verison */
+    info->driver_version = DRIVER_VERSION;                          /* set driver version */
     
     return 0;                                                       /* success return 0 */
 }

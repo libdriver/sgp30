@@ -80,7 +80,7 @@ uint8_t sgp30(uint8_t argc, char **argv)
         {"times", required_argument, NULL, 5},
         {NULL, 0, NULL, 0},
     };
-    char type[33] = "unknow";
+    char type[33] = "unknown";
     uint32_t times = 3;
     uint16_t co2_eq_ppm = 0;
     uint16_t tvoc_ppb = 0;
@@ -159,7 +159,7 @@ uint8_t sgp30(uint8_t argc, char **argv)
             /* baseline co2eq */
             case 1 :
             {
-                /* set the baseline co2eq */
+                /* set the baseline co2 eq */
                 co2_eq_ppm = atoi(optarg);
                 
                 break;
@@ -452,7 +452,7 @@ int main(void)
     /* uart init */
     uart_init(115200);
     
-    /* shell init && register sgp30 fuction */
+    /* shell init && register sgp30 function */
     shell_init();
     shell_register("sgp30", sgp30);
     uart_print("sgp30: welcome to libdriver sgp30.\n");
@@ -475,7 +475,7 @@ int main(void)
             }
             else if (res == 2)
             {
-                uart_print("sgp30: unknow command.\n");
+                uart_print("sgp30: unknown command.\n");
             }
             else if (res == 3)
             {
@@ -491,7 +491,7 @@ int main(void)
             }
             else
             {
-                uart_print("sgp30: unknow status code.\n");
+                uart_print("sgp30: unknown status code.\n");
             }
             uart_flush();
         }
