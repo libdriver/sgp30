@@ -226,7 +226,7 @@ Usage:
   sgp30 (-e read | --example=read) [--times=<num>]
   sgp30 (-e advance-read | --example=advance-read) [--times=<num>] [--baseline-tvoc=<ppb>] [--baseline-co2eq=<ppm>]
         [--humidity-temperature=<temp>] [--humidity-rh=<rh>]
-  spg30 (-e info | --example=info)
+  sgp30 (-e info | --example=info)
 
 Options:
       --baseline-co2eq=<ppm>              Set the co2eq baseline.([default: 0])
