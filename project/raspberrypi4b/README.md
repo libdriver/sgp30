@@ -110,28 +110,28 @@ find_package(sgp30 REQUIRED)
    sgp30 (-t reg | --test=reg)
    ```
 
-5. Run spg30 read test, num means test times.
+5. Run sgp30 read test, num means test times.
 
    ```shell
    sgp30 (-t read | --test=read) [--times=<num>]
    ```
 
-6. Run spg30 read function, num means read times.
+6. Run sgp30 read function, num means read times.
 
    ```shell
    sgp30 (-e read | --example=read) [--times=<num>]
    ```
 
-7. Run spg30 advance read function, num means read times, ppb means current tvoc, ppm means current co2eq, temp means current temperature and rh means current relative humidity.
+7. Run sgp30 advance read function, num means read times, ppb means current tvoc, ppm means current co2eq, temp means current temperature and rh means current relative humidity.
 
    ```shell
    sgp30 (-e advance-read | --example=advance-read) [--times=<num>] [--baseline-tvoc=<ppb>] [--baseline-co2eq=<ppm>] [--humidity-temperature=<temp>] [--humidity-rh=<rh>]
    ```
 
-8. Get spg30 id and product information.
+8. Get sgp30 id and product information.
 
    ```shell
-   spg30 (-e info | --example=info)
+   sgp30 (-e info | --example=info)
    ```
 
 #### 3.2 Command Example
