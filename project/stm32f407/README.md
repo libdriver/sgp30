@@ -14,7 +14,7 @@ IIC Pin: SCL/SDA PB8/PB9.
 
 #### 2.1 Integrated Development Environment
 
-LidDriver provides both Keil and IAR integrated development environment projects.
+LibDriver provides both Keil and IAR integrated development environment projects.
 
 MDK is the Keil ARM project and your Keil version must be 5 or higher.Keil ARM project needs STMicroelectronics STM32F4 Series Device Family Pack and you can download from https://www.keil.com/dd2/stmicroelectronics/stm32f407zgtx.
 
@@ -226,7 +226,7 @@ Usage:
   sgp30 (-e read | --example=read) [--times=<num>]
   sgp30 (-e advance-read | --example=advance-read) [--times=<num>] [--baseline-tvoc=<ppb>] [--baseline-co2eq=<ppm>]
         [--humidity-temperature=<temp>] [--humidity-rh=<rh>]
-  spg30 (-e info | --example=info)
+  sgp30 (-e info | --example=info)
 
 Options:
       --baseline-co2eq=<ppm>              Set the co2eq baseline.([default: 0])

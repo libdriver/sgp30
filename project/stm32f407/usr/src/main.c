@@ -386,7 +386,7 @@ uint8_t sgp30(uint8_t argc, char **argv)
         sgp30_interface_debug_print("  sgp30 (-e read | --example=read) [--times=<num>]\n");
         sgp30_interface_debug_print("  sgp30 (-e advance-read | --example=advance-read) [--times=<num>] [--baseline-tvoc=<ppb>] [--baseline-co2eq=<ppm>]\n");
         sgp30_interface_debug_print("        [--humidity-temperature=<temp>] [--humidity-rh=<rh>]\n");
-        sgp30_interface_debug_print("  spg30 (-e info | --example=info)\n");
+        sgp30_interface_debug_print("  sgp30 (-e info | --example=info)\n");
         sgp30_interface_debug_print("\n");
         sgp30_interface_debug_print("Options:\n");
         sgp30_interface_debug_print("      --baseline-co2eq=<ppm>              Set the co2eq baseline.([default: 0])\n");
