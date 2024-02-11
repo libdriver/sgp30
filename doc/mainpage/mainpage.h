@@ -1,6 +1,6 @@
 /**
  * @mainpage  LibDriver SGP30
- * @brief     libdriver sgp30 is a full function driver of sgp30 and it can run in both MCU and Linux platform.
+ * @brief     LibDriver SGP30 is a full function driver of SGP30 and it can run in both MCU and Linux platform.
  * @version   2.0.0
  * @author    Shifeng Li
  *
