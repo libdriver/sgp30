@@ -115,8 +115,8 @@ uint8_t sgp30_advance_deinit(void)
 
 /**
  * @brief      advance example read
- * @param[out] *co2_eq_ppm points to a co2 buffer
- * @param[out] *tvoc_ppb points to a tvoc buffer
+ * @param[out] *co2_eq_ppm pointer to a co2 buffer
+ * @param[out] *tvoc_ppb pointer to a tvoc buffer
  * @return     status code
  *             - 0 success
  *             - 1 read failed
@@ -137,7 +137,7 @@ uint8_t sgp30_advance_read(uint16_t *co2_eq_ppm, uint16_t *tvoc_ppb)
 
 /**
  * @brief      advance example get the serial id
- * @param[out] *id points to a serial id buffer
+ * @param[out] *id pointer to a serial id buffer
  * @return     status code
  *             - 0 success
  *             - 1 get serial id failed
@@ -158,8 +158,8 @@ uint8_t sgp30_advance_get_serial_id(uint16_t id[3])
 
 /**
  * @brief      advance example get the chip feature
- * @param[out] *product_type points to a product type buffer
- * @param[out] *product_version points to a product version buffer
+ * @param[out] *product_type pointer to a product type buffer
+ * @param[out] *product_version pointer to a product version buffer
  * @return     status code
  *             - 0 success
  *             - 1 get feature failed
@@ -180,8 +180,8 @@ uint8_t sgp30_advance_get_feature(uint8_t *product_type, uint8_t *product_versio
 
 /**
  * @brief     advance example set the chip iaq baseline
- * @param[in] tvoc is the current tvoc
- * @param[in] co2_eq is the current co2 eq
+ * @param[in] tvoc current tvoc
+ * @param[in] co2_eq current co2 eq
  * @return    status code
  *            - 0 success
  *            - 1 set iaq baseline failed
@@ -202,8 +202,8 @@ uint8_t sgp30_advance_set_iaq_baseline(uint16_t tvoc, uint16_t co2_eq)
 
 /**
  * @brief      advance example get the chip iaq baseline
- * @param[out] *tvoc points to a tvoc buffer
- * @param[out] *co2_eq points to a co2 buffer
+ * @param[out] *tvoc pointer to a tvoc buffer
+ * @param[out] *co2_eq pointer to a co2 buffer
  * @return     status code
  *             - 0 success
  *             - 1 get iaq baseline failed
@@ -224,8 +224,8 @@ uint8_t sgp30_advance_get_iaq_baseline(uint16_t *tvoc, uint16_t *co2_eq)
 
 /**
  * @brief     advance example set the absolute humidity
- * @param[in] temp is the current temperature 
- * @param[in] rh is the current relative humidity
+ * @param[in] temp current temperature 
+ * @param[in] rh current relative humidity
  * @return    status code
  *            - 0 success
  *            - 1 set absolute humidity failed

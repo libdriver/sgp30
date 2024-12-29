@@ -115,8 +115,8 @@ uint8_t sgp30_basic_deinit(void)
 
 /**
  * @brief      basic example read
- * @param[out] *co2_eq_ppm points to a co2 buffer
- * @param[out] *tvoc_ppb points to a tvoc buffer
+ * @param[out] *co2_eq_ppm pointer to a co2 buffer
+ * @param[out] *tvoc_ppb pointer to a tvoc buffer
  * @return     status code
  *             - 0 success
  *             - 1 read failed
