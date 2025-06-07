@@ -129,7 +129,7 @@ $(document).ready(function(){initNavTree('driver__sgp30_8c_source.html',''); ini
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    handle-&gt;<a class="code" href="structsgp30__handle__s.html#a406c9433252b7366de417b7a60915c81">delay_ms</a>(delay_ms);                                     <span class="comment">/* delay ms */</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">if</span> (handle-&gt;<a class="code" href="structsgp30__handle__s.html#acebeabb312305acedcb64f4f10755117">iic_read_cmd</a>(addr, data, len) != 0)                 <span class="comment">/* read data */</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">return</span> 1;                                                   <span class="comment">/* write command */</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">return</span> 1;                                                   <span class="comment">/* return error */</span></div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    }</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    {</div>
@@ -156,7 +156,7 @@ $(document).ready(function(){initNavTree('driver__sgp30_8c_source.html',''); ini
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    </div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordflow">if</span> (handle-&gt;<a class="code" href="structsgp30__handle__s.html#af9cb104d353f0c18dbb0fd01405f4889">iic_write_cmd</a>(addr, (uint8_t *)buf, len + 2) != 0)        <span class="comment">/* write iic command */</span></div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    {</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordflow">return</span> 1;                                                         <span class="comment">/* write command */</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordflow">return</span> 1;                                                         <span class="comment">/* return error */</span></div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    }</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    {</div>

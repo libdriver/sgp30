@@ -103,7 +103,7 @@ static uint8_t a_sgp30_iic_read(sgp30_handle_t *handle, uint8_t addr, uint16_t r
     handle->delay_ms(delay_ms);                                     /* delay ms */
     if (handle->iic_read_cmd(addr, data, len) != 0)                 /* read data */
     {
-        return 1;                                                   /* write command */
+        return 1;                                                   /* return error */
     }
     else
     {
@@ -142,7 +142,7 @@ static uint8_t a_sgp30_iic_write(sgp30_handle_t *handle, uint8_t addr, uint16_t 
     
     if (handle->iic_write_cmd(addr, (uint8_t *)buf, len + 2) != 0)        /* write iic command */
     {
-        return 1;                                                         /* write command */
+        return 1;                                                         /* return error */
     }
     else
     {
