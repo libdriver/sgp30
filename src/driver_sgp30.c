@@ -856,7 +856,7 @@ uint8_t sgp30_deinit(sgp30_handle_t *handle)
     {
         handle->debug_print("sgp30: iic close failed.\n");        /* iic close failed */
     
-        return 3;                                                 /* return error */
+        return 1;                                                 /* return error */
     }
     handle->inited = 0;                                           /* flag close initialization */
   
