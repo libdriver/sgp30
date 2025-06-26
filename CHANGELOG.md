@@ -1,3 +1,9 @@
+## 2.0.7 (2025-06-26)
+
+## Bug Fixes
+
+- fix return errors
+
 ## 2.0.6 (2025-06-07)
 
 ## Bug Fixes
