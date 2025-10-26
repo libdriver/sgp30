@@ -10,7 +10,7 @@
 
 The SGP30 is a digital multi-pixel gas sensor designed for easy integration into air purifier, demand-controlled ventilation, and IoT applications. Sensirion’s CMOSens technology offers a complete sensor system on a single chip featuring a digital I2C interface, a temperature controlled micro hotplate, and two preprocessed indoor air quality signals. As the first metal-oxide gas sensor featuring multiple sensing elements on one chip, the SGP30 provides more detailed information about the air quality.The sensing element features an unmatched robustness against contaminating gases present in real-world applications enabling a unique long-term stability and low drift. The very small 2.45 x 2.45 x 0.9 mm3 DFN package enables applications in limited spaces. Sensirion’s state-of-the-art production process guarantees high reproducibility and reliability. Tape and reel packaging, together with suitability for standard SMD assembly processes make the SGP30 predestined for high-volume applications.
 
-LibDriver SGP30 is a full-featured driver of SGP30 launched by LibDriver.It provides TVOC, CO2 eq reading, temperature and humidity correction and other functions.LibDriver is MISRA compliant.
+LibDriver SGP30 is a full-featured driver for SGP30, launched by LibDriver.It provides TVOC reading, CO2 eq reading, temperature reading, humidity correction and additional features. LibDriver is MISRA compliant.
 
 ### Table of Contents
 

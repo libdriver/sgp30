@@ -1,9 +1,27 @@
 var searchData=
 [
-  ['iic_5fdeinit_25',['iic_deinit',['../structsgp30__handle__s.html#af6963bbad902ca6e43942b48c07986c3',1,'sgp30_handle_s']]],
-  ['iic_5finit_26',['iic_init',['../structsgp30__handle__s.html#a8826dd07625f8d90859ce9bd09628d61',1,'sgp30_handle_s']]],
-  ['iic_5fread_5fcmd_27',['iic_read_cmd',['../structsgp30__handle__s.html#acebeabb312305acedcb64f4f10755117',1,'sgp30_handle_s']]],
-  ['iic_5fwrite_5fcmd_28',['iic_write_cmd',['../structsgp30__handle__s.html#af9cb104d353f0c18dbb0fd01405f4889',1,'sgp30_handle_s']]],
-  ['inited_29',['inited',['../structsgp30__handle__s.html#a19bedf28d2b9748f6a62d9ae93f4e68f',1,'sgp30_handle_s']]],
-  ['interface_30',['interface',['../structsgp30__info__s.html#aebaa6c28dd4f2c3dc27566fcb910fd28',1,'sgp30_info_s']]]
+  ['debug_5fprint_0',['debug_print',['../structsgp30__handle__s.html#a769d5b3a6c14790a0e126e8fe70b384b',1,'sgp30_handle_s']]],
+  ['delay_5fms_1',['delay_ms',['../structsgp30__handle__s.html#a406c9433252b7366de417b7a60915c81',1,'sgp30_handle_s']]],
+  ['driver_20function_2',['driver function',['../group__sgp30__base__driver.html',1,'sgp30 base driver function'],['../group__sgp30__driver.html',1,'sgp30 driver function'],['../group__sgp30__example__driver.html',1,'sgp30 example driver function'],['../group__sgp30__extern__driver.html',1,'sgp30 extern driver function'],['../group__sgp30__interface__driver.html',1,'sgp30 interface driver function'],['../group__sgp30__link__driver.html',1,'sgp30 link driver function'],['../group__sgp30__test__driver.html',1,'sgp30 test driver function']]],
+  ['driver_5fsgp30_2ec_3',['driver_sgp30.c',['../driver__sgp30_8c.html',1,'']]],
+  ['driver_5fsgp30_2eh_4',['driver_sgp30.h',['../driver__sgp30_8h.html',1,'']]],
+  ['driver_5fsgp30_5fadvance_2ec_5',['driver_sgp30_advance.c',['../driver__sgp30__advance_8c.html',1,'']]],
+  ['driver_5fsgp30_5fadvance_2eh_6',['driver_sgp30_advance.h',['../driver__sgp30__advance_8h.html',1,'']]],
+  ['driver_5fsgp30_5fbasic_2ec_7',['driver_sgp30_basic.c',['../driver__sgp30__basic_8c.html',1,'']]],
+  ['driver_5fsgp30_5fbasic_2eh_8',['driver_sgp30_basic.h',['../driver__sgp30__basic_8h.html',1,'']]],
+  ['driver_5fsgp30_5finterface_2eh_9',['driver_sgp30_interface.h',['../driver__sgp30__interface_8h.html',1,'']]],
+  ['driver_5fsgp30_5finterface_5ftemplate_2ec_10',['driver_sgp30_interface_template.c',['../driver__sgp30__interface__template_8c.html',1,'']]],
+  ['driver_5fsgp30_5flink_5fdebug_5fprint_11',['DRIVER_SGP30_LINK_DEBUG_PRINT',['../group__sgp30__link__driver.html#ga46e625916eeab6df4dfd081124226546',1,'driver_sgp30.h']]],
+  ['driver_5fsgp30_5flink_5fdelay_5fms_12',['DRIVER_SGP30_LINK_DELAY_MS',['../group__sgp30__link__driver.html#gaaca243a573732fe479e98030ffc800a2',1,'driver_sgp30.h']]],
+  ['driver_5fsgp30_5flink_5fiic_5fdeinit_13',['DRIVER_SGP30_LINK_IIC_DEINIT',['../group__sgp30__link__driver.html#gab21596d2cf8aefdfc8c30b5cf9715c35',1,'driver_sgp30.h']]],
+  ['driver_5fsgp30_5flink_5fiic_5finit_14',['DRIVER_SGP30_LINK_IIC_INIT',['../group__sgp30__link__driver.html#gaa19a824d5426aabd47804116be206cfe',1,'driver_sgp30.h']]],
+  ['driver_5fsgp30_5flink_5fiic_5fread_5fcommand_15',['DRIVER_SGP30_LINK_IIC_READ_COMMAND',['../group__sgp30__link__driver.html#gafe76865d2162265c2341480214f35f0a',1,'driver_sgp30.h']]],
+  ['driver_5fsgp30_5flink_5fiic_5fwrite_5fcommand_16',['DRIVER_SGP30_LINK_IIC_WRITE_COMMAND',['../group__sgp30__link__driver.html#ga4a796d1c3e2911191d99d3a144f13d16',1,'driver_sgp30.h']]],
+  ['driver_5fsgp30_5flink_5finit_17',['DRIVER_SGP30_LINK_INIT',['../group__sgp30__link__driver.html#ga4a09acee8322263c0121ea14960d853a',1,'driver_sgp30.h']]],
+  ['driver_5fsgp30_5fread_5ftest_2ec_18',['driver_sgp30_read_test.c',['../driver__sgp30__read__test_8c.html',1,'']]],
+  ['driver_5fsgp30_5fread_5ftest_2eh_19',['driver_sgp30_read_test.h',['../driver__sgp30__read__test_8h.html',1,'']]],
+  ['driver_5fsgp30_5fregister_5ftest_2ec_20',['driver_sgp30_register_test.c',['../driver__sgp30__register__test_8c.html',1,'']]],
+  ['driver_5fsgp30_5fregister_5ftest_2eh_21',['driver_sgp30_register_test.h',['../driver__sgp30__register__test_8h.html',1,'']]],
+  ['driver_5fversion_22',['DRIVER_VERSION',['../driver__sgp30_8c.html#ae578001fe043b4cca7a0edd801cfe9c4',1,'driver_sgp30.c']]],
+  ['driver_5fversion_23',['driver_version',['../structsgp30__info__s.html#a41b0bd442708b70d252c50b92c75265a',1,'sgp30_info_s']]]
 ];
