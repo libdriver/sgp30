@@ -27,7 +27,7 @@ var driver__sgp30_8c =
     [ "sgp30_deinit", "group__sgp30__base__driver.html#ga3e76808777df8bc665ef7d0a2f577545", null ],
     [ "sgp30_get_feature_set", "group__sgp30__base__driver.html#gacac1cddf331634ab67ff2b3527e0ac7c", null ],
     [ "sgp30_get_iaq_baseline", "group__sgp30__base__driver.html#ga079d97b8707edf3a41b2fdb80f7994fe", null ],
-    [ "sgp30_get_measure_raw", "group__sgp30__base__driver.html#gaacb0611f207f292327a3aafd85a9fa6d", null ],
+    [ "sgp30_get_measure_raw", "group__sgp30__base__driver.html#ga03a3cc5f7d84295ed82e4beded1da736", null ],
     [ "sgp30_get_reg", "group__sgp30__extern__driver.html#ga8c1c11b584bbebe6b1fd6a31b3e5a80e", null ],
     [ "sgp30_get_serial_id", "group__sgp30__base__driver.html#ga556d5e4bb6259716b506f62a06cfb363", null ],
     [ "sgp30_get_tvoc_inceptive_baseline", "group__sgp30__base__driver.html#gaf545b1256a68910d13f86e7898c37109", null ],

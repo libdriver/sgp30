@@ -98,6 +98,7 @@ $(function(){initNavTree('driver__sgp30_8c.html','',''); });
 <p>driver sgp30 source file  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="driver__sgp30_8h_source.html">driver_sgp30.h</a>&quot;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for driver_sgp30.c:</div>
 <div class="dyncontent">
@@ -162,8 +163,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:gae29bba67fe54d52b1cd267a03f7bc2ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">run the chip measure test  <br /></td></tr>
 <tr class="memitem:gacac1cddf331634ab67ff2b3527e0ac7c" id="r_gacac1cddf331634ab67ff2b3527e0ac7c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sgp30__base__driver.html#gacac1cddf331634ab67ff2b3527e0ac7c">sgp30_get_feature_set</a> (<a class="el" href="group__sgp30__base__driver.html#ga1fd317505ed3dd79a3bb9d4ca0ca3c0e">sgp30_handle_t</a> *handle, uint8_t *product_type, uint8_t *product_version)</td></tr>
 <tr class="memdesc:gacac1cddf331634ab67ff2b3527e0ac7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the chip feature  <br /></td></tr>
-<tr class="memitem:gaacb0611f207f292327a3aafd85a9fa6d" id="r_gaacb0611f207f292327a3aafd85a9fa6d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sgp30__base__driver.html#gaacb0611f207f292327a3aafd85a9fa6d">sgp30_get_measure_raw</a> (<a class="el" href="group__sgp30__base__driver.html#ga1fd317505ed3dd79a3bb9d4ca0ca3c0e">sgp30_handle_t</a> *handle, uint16_t *tvoc, uint16_t *co2_eq)</td></tr>
-<tr class="memdesc:gaacb0611f207f292327a3aafd85a9fa6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the iaq measure raw result  <br /></td></tr>
+<tr class="memitem:ga03a3cc5f7d84295ed82e4beded1da736" id="r_ga03a3cc5f7d84295ed82e4beded1da736"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sgp30__base__driver.html#ga03a3cc5f7d84295ed82e4beded1da736">sgp30_get_measure_raw</a> (<a class="el" href="group__sgp30__base__driver.html#ga1fd317505ed3dd79a3bb9d4ca0ca3c0e">sgp30_handle_t</a> *handle, uint16_t *h2_raw, uint16_t *ethanol_raw)</td></tr>
+<tr class="memdesc:ga03a3cc5f7d84295ed82e4beded1da736"><td class="mdescLeft">&#160;</td><td class="mdescRight">get measure raw  <br /></td></tr>
 <tr class="memitem:ga1fe1b66ea42eb2ebd65037f4b6dc754e" id="r_ga1fe1b66ea42eb2ebd65037f4b6dc754e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sgp30__base__driver.html#ga1fe1b66ea42eb2ebd65037f4b6dc754e">sgp30_init</a> (<a class="el" href="group__sgp30__base__driver.html#ga1fd317505ed3dd79a3bb9d4ca0ca3c0e">sgp30_handle_t</a> *handle)</td></tr>
 <tr class="memdesc:ga1fe1b66ea42eb2ebd65037f4b6dc754e"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize the chip  <br /></td></tr>
 <tr class="memitem:ga3e76808777df8bc665ef7d0a2f577545" id="r_ga3e76808777df8bc665ef7d0a2f577545"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__sgp30__base__driver.html#ga3e76808777df8bc665ef7d0a2f577545">sgp30_deinit</a> (<a class="el" href="group__sgp30__base__driver.html#ga1fd317505ed3dd79a3bb9d4ca0ca3c0e">sgp30_handle_t</a> *handle)</td></tr>
@@ -214,7 +215,7 @@ Functions</h2></td></tr>
 <p>chip information definition </p>
 <p>chip name </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00043">43</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00044">44</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -231,7 +232,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>driver version </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00050">50</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00051">51</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -248,7 +249,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>manufacturer name </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00044">44</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00045">45</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -265,7 +266,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>chip max current </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00047">47</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00048">48</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -284,7 +285,7 @@ Functions</h2></td></tr>
 <p>chip address definition </p>
 <p>chip iic address </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00055">55</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00056">56</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -301,7 +302,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>get feature set command </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00066">66</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00067">67</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -318,7 +319,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>get iaq baseline command </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00062">62</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00063">63</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -335,7 +336,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>get serial id command </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00071">71</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00072">72</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -352,7 +353,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>get tvoc inceptive baseline command </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00068">68</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00069">69</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -371,7 +372,7 @@ Functions</h2></td></tr>
 <p>chip command definition </p>
 <p>iaq init command </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00060">60</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00061">61</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -388,7 +389,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>measure iaq command </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00061">61</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00062">62</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -405,7 +406,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>measure raw command </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00067">67</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00068">68</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -422,7 +423,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>measure test command </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00065">65</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00066">66</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -439,7 +440,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>set absolute humidity command </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00064">64</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00065">65</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -456,7 +457,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>set iaq baseline command </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00063">63</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00064">64</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -473,7 +474,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>set tvoc baseline command </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00069">69</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00070">70</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -490,7 +491,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>soft reset command </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00070">70</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00071">71</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -506,7 +507,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00077">77</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00078">78</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -524,7 +525,7 @@ Functions</h2></td></tr>
 
 <p>crc8 definition </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00076">76</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00077">77</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -541,7 +542,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>chip max supply voltage </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00046">46</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00047">47</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -558,7 +559,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>chip min supply voltage </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00045">45</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00046">46</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -575,7 +576,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>chip max operating temperature </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00049">49</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00050">50</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
@@ -592,7 +593,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>chip min operating temperature </p>
 
-<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00048">48</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="driver__sgp30_8c_source.html#l00049">49</a> of file <a class="el" href="driver__sgp30_8c_source.html">driver_sgp30.c</a>.</p>
 
 </div>
 </div>
