@@ -242,10 +242,10 @@ uint8_t sgp30_read(sgp30_handle_t *handle, uint16_t *co2_eq_ppm, uint16_t *tvoc_
 uint8_t sgp30_measure_iaq(sgp30_handle_t *handle, uint16_t *co2_eq_ppm, uint16_t *tvoc_ppb);
 
 /**
- * @brief      get the iaq measure raw result
+ * @brief      get measure raw
  * @param[in]  *handle pointer to an sgp30 handle structure
- * @param[out] *tvoc pointer to a tvoc buffer
- * @param[out] *co2_eq pointer to a co2 buffer
+ * @param[out] *h2_raw pointer to a raw buffer
+ * @param[out] *ethanol_raw pointer to a raw buffer
  * @return     status code
  *             - 0 success
  *             - 1 get measure raw failed
@@ -253,7 +253,7 @@ uint8_t sgp30_measure_iaq(sgp30_handle_t *handle, uint16_t *co2_eq_ppm, uint16_t
  *             - 3 handle is not initialized
  * @note       none
  */
-uint8_t sgp30_get_measure_raw(sgp30_handle_t *handle, uint16_t *tvoc, uint16_t *co2_eq);
+uint8_t sgp30_get_measure_raw(sgp30_handle_t *handle, uint16_t *h2_raw, uint16_t *ethanol_raw);
 
 /**
  * @brief     set the chip tvoc baseline
@@ -388,20 +388,6 @@ uint8_t sgp30_measure_test(sgp30_handle_t *handle, uint16_t *result);
  * @note       none
  */
 uint8_t sgp30_get_feature_set(sgp30_handle_t *handle, uint8_t *product_type, uint8_t *product_version);
-
-/**
- * @brief      get the iaq measure raw result
- * @param[in]  *handle pointer to an sgp30 handle structure
- * @param[out] *tvoc pointer to a tvoc buffer
- * @param[out] *co2_eq pointer to a co2 buffer
- * @return     status code
- *             - 0 success
- *             - 1 get measure raw failed
- *             - 2 handle is NULL
- *             - 3 handle is not initialized
- * @note       none
- */
-uint8_t sgp30_get_measure_raw(sgp30_handle_t *handle, uint16_t *tvoc, uint16_t *co2_eq);
 
 /**
  * @}

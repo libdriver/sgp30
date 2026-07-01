@@ -36,6 +36,7 @@
  */
 
 #include "driver_sgp30.h"
+#include <math.h>
 
 /**
  * @brief chip information definition
@@ -604,20 +605,21 @@ uint8_t sgp30_absolute_humidity_convert_to_register(sgp30_handle_t *handle, floa
     float absolute_humidity;
     float intpart, fractpart;
     
-    if (handle == NULL)                                                                                                 /* check handle */
+    if (handle == NULL)                                                                               /* check handle */
     {
-        return 2;                                                                                                       /* return error */
+        return 2;                                                                                     /* return error */
     }
-    if (handle->inited != 1)                                                                                            /* check handle initialization */
+    if (handle->inited != 1)                                                                          /* check handle initialization */
     {
-        return 3;                                                                                                       /* return error */
+        return 3;                                                                                     /* return error */
     }
     
-    absolute_humidity = (rh / 100.0f * 6.112f * powf(17.62f * temp, 243.12f + temp)) / (273.15f + temp) * 216.7f;       /* get absolute humidity */
-    fractpart = modff(absolute_humidity, (float *)&intpart);                                                            /* get intpart and fractpart */
-    *reg = (uint16_t)(intpart) << 8 | (uint8_t)(fractpart * 256);                                                       /* convert to register */
+    absolute_humidity = (rh / 100.0f * 6.112f * expf( (17.62f * temp) / (243.12f + temp) )) / 
+                        (273.15f + temp) * 216.7f;                                                    /* get absolute humidity */
+    fractpart = modff(absolute_humidity, (float *)&intpart);                                          /* get intpart and fractpart */
+    *reg = (uint16_t)(intpart) << 8 | (uint8_t)(fractpart * 256);                                     /* convert to register */
     
-    return 0;                                                                                                           /* success return 0 */
+    return 0;                                                                                         /* success return 0 */
 }
 
 /**
@@ -704,17 +706,17 @@ uint8_t sgp30_get_feature_set(sgp30_handle_t *handle, uint8_t *product_type, uin
        
         return 1;                                                                                             /* return error */
     }
-    *product_type = (buf[0] >> 4) & 0xF;                                                                      /* get product type */
+    *product_type = buf[0] & 0xF;                                                                             /* get product type */
     *product_version = buf[1];                                                                                /* get product version */
     
     return 0;                                                                                                 /* success return 0 */
 }
 
 /**
- * @brief      get the iaq measure raw result
+ * @brief      get measure raw
  * @param[in]  *handle pointer to an sgp30 handle structure
- * @param[out] *tvoc pointer to a tvoc buffer
- * @param[out] *co2_eq pointer to a co2 buffer
+ * @param[out] *h2_raw pointer to a raw buffer
+ * @param[out] *ethanol_raw pointer to a raw buffer
  * @return     status code
  *             - 0 success
  *             - 1 get measure raw failed
@@ -722,7 +724,7 @@ uint8_t sgp30_get_feature_set(sgp30_handle_t *handle, uint8_t *product_type, uin
  *             - 3 handle is not initialized
  * @note       none
  */
-uint8_t sgp30_get_measure_raw(sgp30_handle_t *handle, uint16_t *tvoc, uint16_t *co2_eq)
+uint8_t sgp30_get_measure_raw(sgp30_handle_t *handle, uint16_t *h2_raw, uint16_t *ethanol_raw)
 {
     uint8_t res;
     uint8_t buf[6];
@@ -756,8 +758,8 @@ uint8_t sgp30_get_measure_raw(sgp30_handle_t *handle, uint16_t *tvoc, uint16_t *
        
         return 1;                                                                                           /* return error */
     }
-    *tvoc = (uint16_t)(((uint16_t)buf[0]) << 8 | buf[1]);                                                   /* get tvoc data */
-    *co2_eq = (uint16_t)(((uint16_t)buf[3]) << 8 | buf[4]);                                                 /* get co2 eq data */
+    *h2_raw = (uint16_t)(((uint16_t)buf[0]) << 8 | buf[1]);                                                 /* set h2 raw data */
+    *ethanol_raw = (uint16_t)(((uint16_t)buf[3]) << 8 | buf[4]);                                            /* set ethanol raw data */
     
     return 0;                                                                                               /* success return 0 */
 }
