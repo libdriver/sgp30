@@ -610,7 +610,7 @@ $(function(){initNavTree('driver__sgp30_8c_source.html','',''); });
 <div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span>       </div>
 <div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>        <span class="keywordflow">return</span> 1;                                                                                             <span class="comment">/* return error */</span></div>
 <div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>    }</div>
-<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>    *product_type = buf[0] &amp; 0xF;                                                                             <span class="comment">/* get product type */</span></div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>    *product_type = (buf[0] &gt;&gt; 4) &amp; 0xF;                                                                      <span class="comment">/* get product type */</span></div>
 <div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span>    *product_version = buf[1];                                                                                <span class="comment">/* get product version */</span></div>
 <div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>    </div>
 <div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>    <span class="keywordflow">return</span> 0;                                                                                                 <span class="comment">/* success return 0 */</span></div>

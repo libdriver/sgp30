@@ -706,7 +706,7 @@ uint8_t sgp30_get_feature_set(sgp30_handle_t *handle, uint8_t *product_type, uin
        
         return 1;                                                                                             /* return error */
     }
-    *product_type = buf[0] & 0xF;                                                                             /* get product type */
+    *product_type = (buf[0] >> 4) & 0xF;                                                                      /* get product type */
     *product_version = buf[1];                                                                                /* get product version */
     
     return 0;                                                                                                 /* success return 0 */
